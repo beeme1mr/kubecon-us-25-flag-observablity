@@ -1,38 +1,112 @@
 ---
-theme: seriph
+layout: center
+highlighter: shiki
+css: unocss
+colorSchema: dark
+transition: fade-out
 title: From "What Broke" to "What Changed"
+exportFilename: KubeCon NA 2025 - Feature Flags as First-Class Signals in Observability
+lineNumbers: false
+drawings:
+  persist: false
+fonts:
+  sans: 'Inter'
+  serif: 'Architects Daughter'
+  mono: 'Fira Code'
+mdc: true
+clicks: 0
+preload: false
+glowSeed: 229
+routerMode: hash
 info: |
   ## Feature Flags as First-Class Signals in Observability
   KubeCon + CloudNativeCon 2025
-  
+
   Learn how to integrate feature flag observability into your workflow using OpenFeature and OpenTelemetry standards.
-class: text-center
-drawings:
-  persist: false
-transition: fade
-mdc: true
-colorSchema: dark
 ---
 
-# From "What Broke" to "What Changed"
+<div translate-x--14>
+  <h1>
+    From <span v-mark="{ type: 'crossed-off', color: 'red' }" class="font-serif">"What Broke"</span> to <span v-mark="{ type: 'circle' }" class="font-serif">"What Changed"</span>
+  </h1>
 
-## Feature Flags as First-Class Signals in Observability
-
-<div class="pt-12">
-  <span class="px-2 py-1 rounded cursor-pointer opacity-80 hover:opacity-100">
-    KubeCon + CloudNativeCon 2025
-  </span>
+  <p>Michael Beemer, Dynatrace<br>Parth Suthar, DevCycle</p>
 </div>
 
-<div class="abs-br m-6 flex gap-2">
-  <span>25 Minutes</span>
-  <span>|</span>
-  <span>2 Speakers</span>
+<div w-full absolute bottom-0 left-0 flex items-center transform="translate-x--10 translate-y--10">
+  <div w-full flex items-center justify-end gap-4>
+    <img src="/kccnc-na-2025-white.svg" h-20 translate-y-4>
+  </div>
 </div>
 
 <!--
 Welcome everyone! Today we're going to talk about a critical gap in modern observability - feature flags.
 -->
+
+---
+layout: intro
+class: px-35
+---
+
+<div flex>
+  <div
+    v-click="1" flex flex-col items-center transition duration-500 ease-in-out
+    :class="$clicks < 1 ? 'translate-y-20 opacity-0' : 'translate-y-0 opacity-100'"
+  >
+    <img src="/mike.png" w-50 h-50 rounded-full object-cover mb-5>
+    <span font-semibold text-3xl >Michael Beemer</span>
+    <div items-center>
+      <div>
+        <span class="opacity-70">Senior Product Manager</span>
+      </div>
+      <div text-sm flex items-center justify-center gap-2 mt-4>
+        <div i-ri:github-fill /><span underline decoration-dashed font-mono decoration-zinc-300>beeme1mr</span>
+      </div>
+    </div>
+  </div>
+  <div flex-1 />
+  <div
+    v-click="2" flex flex-col items-center transition duration-500 ease-in-out
+    :class="$clicks < 2 ? 'translate-y-20 opacity-0' : 'translate-y-0 opacity-100'"
+  >
+    <img src="/parth.png" w-50 h-50 rounded-full object-cover mb-5>
+    <span font-semibold text-3xl>Parth Suthar</span>
+    <div items-center>
+      <div>
+        <span class="opacity-70">Software engineer</span>
+      </div>
+      <div text-sm flex items-center justify-center gap-2 mt-4>
+        <div i-ri:github-fill /><span underline decoration-dashed font-mono decoration-zinc-300>suthar26</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+---
+clicks: 3
+---
+
+<div
+  class="mermaid-container transition-all duration-500"
+  :class="{
+    'scale-300 translate-x-200': $clicks === 1,
+    'scale-200 translate-x-40 translate-y-10': $clicks === 2,
+    'scale-50': $clicks === 0
+  }"
+>
+
+```mermaid {scale: 0.8}
+graph LR
+    A[OpenFeature SDK] --> B[Flag Evaluation]
+    B --> C[OpenTelemetry]
+    C --> D[Observability Platform]
+    
+    style A fill:#4a9eff
+    style C fill:#f5a623
+    style D fill:#6f6
+```
+
+</div>
 
 ---
 layout: center
@@ -41,9 +115,11 @@ class: text-center
 
 # Imagine This...
 
+<span class="opacity-80">The firefighting scenario every team knows</span>
+
 <v-clicks>
 
-<div class="text-2xl mb-8">
+<div class="text-2xl mb-8 mt-8">
 🚨 Your monitoring dashboards are <span class="text-red-500 font-bold">flashing red</span>
 </div>
 
@@ -56,10 +132,10 @@ class: text-center
 </div>
 
 <div class="text-2xl mt-12">
-Hours later, you discover... <span v-click class="text-blue-400 font-bold">it wasn't a bug</span>
+Hours later, you discover... <span class="text-blue-400 font-bold">it wasn't a bug</span>
 </div>
 
-<div v-after class="text-3xl mt-8 text-blue-400 font-bold">
+<div class="text-3xl mt-8 font-serif text-blue-400 font-bold">
 It was a feature flag change 🚩
 </div>
 
@@ -71,31 +147,29 @@ This scenario plays out in engineering teams every day. Let's talk about why.
 -->
 
 ---
-layout: center
----
 
 # The Problem
 
 <div class="text-center text-2xl leading-relaxed mt-16">
 <v-click>
 
-Feature flags are **hidden** from observability tools
+Feature flags are <span class="font-serif text-red-400">hidden</span> from observability tools
 
 </v-click>
 <v-click>
 
-making it **difficult** to pinpoint changes
+making it <span class="font-serif text-orange-400">difficult</span> to pinpoint changes
 
 </v-click>
 <v-click>
 
-as the **root cause** of incidents
+as the <span class="font-serif text-blue-400">root cause</span> of incidents
 
 </v-click>
+
 </div>
-
-<div v-click class="mt-16 text-center opacity-70">
-[IMAGE PLACEHOLDER: Simple diagram showing a feature flag toggle leading to error spike]
+<div class="mt-12 flex justify-center opacity-90">
+  <img v-click class="w-lg" src="/failures.png" />
 </div>
 
 <!--
@@ -103,34 +177,63 @@ This is the core problem we're solving today. Feature flags operate in the shado
 -->
 
 ---
-layout: two-cols
+class: py-10
 ---
 
 # What Are Feature Flags?
 
+<span>Runtime configuration for modern software delivery</span>
+
+<div mt-6 />
+
+<div grid grid-cols-2 gap-6>
+
+<div>
 <v-clicks>
 
-- 🎛️ Toggle features **on/off** without deploying code
+<div border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm p-4 mb-3>
+  <div flex items-center mb-2>
+    <div i-carbon:settings-adjust text-blue-300 text-lg mr-2 />
+    <span font-semibold>Toggle Control</span>
+  </div>
+  <div text-sm opacity-70>Turn features on/off without deploying code</div>
+</div>
 
-- 🚀 Used for **releases** and rollouts
+<div border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm p-4 mb-3>
+  <div flex items-center mb-2>
+    <div i-carbon:rocket text-green-300 text-lg mr-2 />
+    <span font-semibold>Progressive Rollouts</span>
+  </div>
+  <div text-sm opacity-70>Gradual releases and canary deployments</div>
+</div>
 
-- 🧪 Enable **A/B testing** and experiments
+<div border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm p-4 mb-3>
+  <div flex items-center mb-2>
+    <div i-carbon:chart-multitype text-purple-300 text-lg mr-2 />
+    <span font-semibold>A/B Testing</span>
+  </div>
+  <div text-sm opacity-70>Experiments and variant testing</div>
+</div>
 
-- 🔐 Control **permissions** and access
-
-- 🎯 Target specific **user segments**
+<div border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm p-4 mb-3>
+  <div flex items-center mb-2>
+    <div i-carbon:user-access text-amber-300 text-lg mr-2 />
+    <span font-semibold>Access Control</span>
+  </div>
+  <div text-sm opacity-70>Permissions and targeting rules</div>
+</div>
 
 </v-clicks>
+</div>
 
-::right::
+<div v-click="5">
 
-<div v-click class="mt-8">
+<div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-2">
 
-```typescript {all|3|4-6|8-10|all}
-// Feature flag evaluation
+```typescript
 const client = OpenFeature.getClient();
 
-const showNewCheckout = await client.getBooleanValue(
+const showNewCheckout = client.getBooleanValue(
   'new-checkout-flow',
   false
 );
@@ -142,8 +245,8 @@ if (showNewCheckout) {
 
 </div>
 
-<div v-click class="mt-8 opacity-70 text-sm">
-[IMAGE PLACEHOLDER: Diagram of feature flag toggle controlling feature rollout to users]
+</div>
+
 </div>
 
 <!--
@@ -151,42 +254,80 @@ Feature flags are powerful - they let us deploy code that's dormant until we're 
 -->
 
 ---
-layout: center
+class: py-10
 ---
 
 # The Observability Gap
 
-<div class="grid grid-cols-2 gap-8 mt-12">
+<span>What traditional monitoring misses</span>
 
-<div v-click>
-<h3 class="text-blue-400 mb-4">What We See</h3>
+<div mt-8 />
 
-- ❌ Error rates spike
-- ❌ Latency increases  
-- ❌ Failed requests
-- ❌ Resource exhaustion
+<div grid grid-cols-2 gap-6>
 
-<div class="mt-4 text-sm opacity-70">
-Traditional metrics & traces
+<div v-click border="2 solid blue-500/30" rounded-lg overflow-hidden bg="blue-900/20" backdrop-blur-sm>
+  <div flex items-center bg="blue-800/30" backdrop-blur px-4 py-3>
+    <div i-carbon:view text-blue-300 text-xl mr-3 />
+    <h3 class="text-blue-400 font-semibold text-lg">What We See</h3>
+  </div>
+  <div px-4 py-4>
+    <div flex flex-col gap-3>
+      <div flex items-center>
+        <div i-carbon:warning-alt text-red-400 mr-2 />
+        <span>Error rates spike</span>
+      </div>
+      <div flex items-center>
+        <div i-carbon:time text-orange-400 mr-2 />
+        <span>Latency increases</span>
+      </div>
+      <div flex items-center>
+        <div i-carbon:close-filled text-red-400 mr-2 />
+        <span>Failed requests</span>
+      </div>
+      <div flex items-center>
+        <div i-carbon:chart-area text-purple-400 mr-2 />
+        <span>Resource exhaustion</span>
+      </div>
+    </div>
+    <div class="mt-4 text-sm opacity-70 italic">
+      Traditional metrics & traces
+    </div>
+  </div>
 </div>
+
+<div v-click border="2 solid red-500/30" rounded-lg overflow-hidden bg="red-900/20" backdrop-blur-sm>
+  <div flex items-center bg="red-800/30" backdrop-blur px-4 py-3>
+    <div i-carbon:view-off text-red-300 text-xl mr-3 />
+    <h3 class="text-red-400 font-semibold text-lg">What's Hidden</h3>
+  </div>
+  <div px-4 py-4>
+    <div flex flex-col gap-3>
+      <div flex items-center>
+        <div i-carbon:flag text-amber-400 mr-2 />
+        <span>Which flag changed?</span>
+      </div>
+      <div flex items-center>
+        <div i-carbon:time text-amber-400 mr-2 />
+        <span>When was it toggled?</span>
+      </div>
+      <div flex items-center>
+        <div i-carbon:user text-amber-400 mr-2 />
+        <span>Who was affected?</span>
+      </div>
+      <div flex items-center>
+        <div i-carbon:branch text-amber-400 mr-2 />
+        <span>What variant was served?</span>
+      </div>
+    </div>
+    <div class="mt-4 text-sm opacity-70 italic">
+      Feature flag context
+    </div>
+  </div>
 </div>
 
-<div v-click>
-<h3 class="text-red-400 mb-4">What's Hidden</h3>
-
-- ⚠️ Which flag changed?
-- ⚠️ When was it toggled?
-- ⚠️ Who was affected?
-- ⚠️ What variant was served?
-
-<div class="mt-4 text-sm opacity-70">
-Feature flag context
-</div>
 </div>
 
-</div>
-
-<div v-click class="mt-12 text-center opacity-70">
+<div v-click class="mt-6 text-center opacity-70">
 [IMAGE PLACEHOLDER: Screenshot of trace or dashboard with NO reference to feature flags]
 </div>
 
@@ -255,35 +396,58 @@ In the OTel demo, we can simulate this exact scenario. The problem is invisible.
 -->
 
 ---
-layout: center
+class: py-10
+glowSeed: 175
 ---
 
 # Why This Matters
 
-<div class="grid grid-cols-3 gap-8 mt-12">
+<span>The real cost of hidden feature flags</span>
 
-<div v-click class="text-center">
-<div class="text-4xl mb-4">⏱️</div>
-<div class="text-xl font-bold mb-2">Longer MTTR</div>
-<div class="text-sm opacity-70">Mean Time to Recovery increases when root cause is hidden</div>
+<div mt-8 />
+
+<div grid grid-cols-3 gap-6>
+
+<div v-click border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm h-full>
+  <div flex items-center justify-center bg="white/10" backdrop-blur px-4 py-6>
+    <div i-carbon:time text-6xl text-red-300 />
+  </div>
+  <div px-4 py-4 text-center>
+    <div text-xl font-bold mb-2>Longer MTTR</div>
+    <div text-sm opacity-70>Mean Time to Recovery increases when root cause is hidden</div>
+  </div>
 </div>
 
-<div v-click class="text-center">
-<div class="text-4xl mb-4">💸</div>
-<div class="text-xl font-bold mb-2">Wasted Time</div>
-<div class="text-sm opacity-70">Engineers spend hours debugging code that isn't broken</div>
+<div v-click border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm h-full>
+  <div flex items-center justify-center bg="white/10" backdrop-blur px-4 py-6>
+    <div i-carbon:currency-dollar text-6xl text-amber-300 />
+  </div>
+  <div px-4 py-4 text-center>
+    <div text-xl font-bold mb-2>Wasted Time</div>
+    <div text-sm opacity-70>Engineers spend hours debugging code that isn't broken</div>
+  </div>
 </div>
 
-<div v-click class="text-center">
-<div class="text-4xl mb-4">😰</div>
-<div class="text-xl font-bold mb-2">All-Hands Incidents</div>
-<div class="text-sm opacity-70">What should be a quick rollback becomes a major incident</div>
+<div v-click border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm h-full>
+  <div flex items-center justify-center bg="white/10" backdrop-blur px-4 py-6>
+    <div i-carbon:warning-alt text-6xl text-orange-300 />
+  </div>
+  <div px-4 py-4 text-center>
+    <div text-xl font-bold mb-2>All-Hands Incidents</div>
+    <div text-sm opacity-70>What should be a quick rollback becomes a major incident</div>
+  </div>
 </div>
 
 </div>
 
-<div v-click class="mt-12 text-center opacity-70">
-[IMAGE PLACEHOLDER: Timeline comparing MTTR with vs without feature flag observability]
+<div v-click mt-6 flex justify-center>
+  <div
+    border="2 solid white/5" bg="white/5" backdrop-blur-sm
+    rounded-lg px-6 py-3 flex items-center gap-3
+  >
+    <div i-carbon:idea text-yellow-300 text-2xl />
+    <span text-lg class="font-serif">Feature flag observability transforms incident response</span>
+  </div>
 </div>
 
 <!--
@@ -292,36 +456,59 @@ The impact is real - longer incidents, wasted engineering time, and unnecessary 
 
 ---
 layout: section
+glowSeed: 200
 ---
 
 # The Evolution of Feature Flag Observability
 
-How teams have tried to solve this problem
+<span class="opacity-80">How teams have tried to solve this problem</span>
 
 ---
-layout: center
+class: py-10
+glowSeed: 140
+clicks: 4
 ---
 
 # Stage 1: Flying Blind 🙈
 
-<div class="grid grid-cols-2 gap-8 mt-6">
+<span>The starting point for most teams</span>
 
-<div v-click>
+<div mt-6 />
 
-### The Reality
+<div grid grid-cols-2 gap-6>
 
-- No visibility into flag state
-- Manual correlation attempts
-- Guesswork during incidents
-- Slow troubleshooting
-
+<div v-click border="2 solid red-500/30" rounded-lg overflow-hidden bg="red-900/20" backdrop-blur-sm>
+  <div flex items-center bg="red-800/30" backdrop-blur px-4 py-3>
+    <div i-carbon:view-off text-red-300 text-xl mr-3 />
+    <h3 class="text-red-400 font-semibold">The Reality</h3>
+  </div>
+  <div px-4 py-4>
+    <div flex flex-col gap-3>
+      <div flex items-center>
+        <div i-carbon:misuse text-red-400 mr-2 />
+        <span text-sm>No visibility into flag state</span>
+      </div>
+      <div flex items-center>
+        <div i-carbon:edit text-orange-400 mr-2 />
+        <span text-sm>Manual correlation attempts</span>
+      </div>
+      <div flex items-center>
+        <div i-carbon:unknown text-amber-400 mr-2 />
+        <span text-sm>Guesswork during incidents</span>
+      </div>
+      <div flex items-center>
+        <div i-carbon:time text-red-400 mr-2 />
+        <span text-sm>Slow troubleshooting</span>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div v-click>
+<div v-click="2">
+  <div text-sm font-semibold mb-3 opacity-70>The Manual Hunt Process</div>
+  <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-3">
 
-### The Process
-
-```mermaid {scale: 0.5}
+```mermaid {scale: 0.35}
 graph LR
     A[🚨 Incident] --> B[Logs]
     B --> C[Metrics]
@@ -334,16 +521,12 @@ graph LR
     style G fill:#6f6
 ```
 
-<div class="text-xs mt-2 opacity-70">
-Manual hunt through logs, metrics, deploys, and Slack
+  </div>
+  <div text-xs mt-3 opacity-70 text-center italic>
+    Hours of manual correlation across systems
+  </div>
 </div>
 
-</div>
-
-</div>
-
-<div v-click class="mt-4 text-center opacity-70 text-sm">
-[IMAGE PLACEHOLDER: Cartoon of blindfolded engineer at dashboard]
 </div>
 
 <!--
@@ -610,9 +793,10 @@ How OpenFeature & OpenTelemetry defined the solution
 
 ---
 layout: default
+clicks: 8
 ---
 
-# Collaboration: OpenFeature ❤️ OpenTelemetry
+# OpenFeature 🤝 OpenTelemetry
 
 <div class="grid grid-cols-2 gap-8 mt-8">
 
@@ -640,7 +824,61 @@ layout: default
 
 </div>
 
-<div v-click class="mt-8 text-center">
+<div class="mt-8 text-center">
+
+<div v-if="$clicks >= 2 && $clicks < 3">
+
+```mermaid {scale: 0.8}
+graph LR
+    A[OpenFeature SDK] -->|Hooks| B[Flag Evaluation]
+    B -->|Semantic Convention| C[OpenTelemetry]
+    C -->|Traces| D[Observability Platform]
+```
+
+</div>
+
+<div v-else-if="$clicks >= 3 && $clicks < 4">
+
+```mermaid {scale: 0.8}
+graph LR
+    A[OpenFeature SDK] -->|Hooks| B[Flag Evaluation]
+    B -->|Semantic Convention| C[OpenTelemetry]
+    C -->|Traces| D[Observability Platform]
+    
+    style A fill:#4a9eff,stroke:#4a9eff,stroke-width:4px
+```
+
+</div>
+
+<div v-else-if="$clicks >= 4 && $clicks < 5">
+
+```mermaid {scale: 0.8}
+graph LR
+    A[OpenFeature SDK] -->|Hooks| B[Flag Evaluation]
+    B -->|Semantic Convention| C[OpenTelemetry]
+    C -->|Traces| D[Observability Platform]
+    
+    style A fill:#4a9eff
+    style B fill:#9f9fff,stroke:#9f9fff,stroke-width:4px
+```
+
+</div>
+
+<div v-else-if="$clicks >= 5 && $clicks < 6">
+
+```mermaid {scale: 0.8}
+graph LR
+    A[OpenFeature SDK] -->|Hooks| B[Flag Evaluation]
+    B -->|Semantic Convention| C[OpenTelemetry]
+    C -->|Traces| D[Observability Platform]
+    
+    style A fill:#4a9eff
+    style C fill:#f5a623,stroke:#f5a623,stroke-width:4px
+```
+
+</div>
+
+<div v-else-if="$clicks >= 6">
 
 ```mermaid {scale: 0.8}
 graph LR
@@ -650,8 +888,10 @@ graph LR
     
     style A fill:#4a9eff
     style C fill:#f5a623
-    style D fill:#6f6
+    style D fill:#6f6,stroke:#6f6,stroke-width:4px
 ```
+
+</div>
 
 </div>
 
@@ -1480,41 +1720,65 @@ Together, we can make feature flags first-class citizens in observability.
 ---
 layout: center
 class: text-center
+glowSeed: 300
 ---
 
-# Thank You! 🙏
+# <span class="font-serif">Thank You! 🙏</span>
 
 <div class="mt-12 text-xl space-y-4">
-<div>Questions?</div>
+<div class="font-serif text-2xl">Questions?</div>
 <div class="mt-8 opacity-80">Find us after the talk or online:</div>
 </div>
 
 <div class="mt-12 grid grid-cols-2 gap-8 text-left max-w-2xl mx-auto">
 
-<div>
+<div border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm p-6>
+  <div flex items-center mb-4>
+    <div i-carbon:link text-blue-300 text-2xl mr-3 />
+    <h3 class="text-lg font-semibold">Resources</h3>
+  </div>
+  <div flex flex-col gap-3 text-sm>
+    <div flex items-center>
+      <div i-carbon:flag mr-2 text-purple-400 />
+      <span>openfeature.dev</span>
+    </div>
+    <div flex items-center>
+      <div i-carbon:chart-line mr-2 text-amber-400 />
+      <span>opentelemetry.io</span>
+    </div>
+    <div flex items-center>
+      <div i-carbon:logo-github mr-2 text-green-400 />
+      <span>github.com/open-telemetry/opentelemetry-demo</span>
+    </div>
+  </div>
+</div>
 
-### Resources
-
-- 🔗 openfeature.dev
-- 🔗 opentelemetry.io
-- 🔗 github.com/open-telemetry/opentelemetry-demo
+<div border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm p-6>
+  <div flex items-center mb-4>
+    <div i-carbon:user-multiple text-green-300 text-2xl mr-3 />
+    <h3 class="text-lg font-semibold">Connect</h3>
+  </div>
+  <div flex flex-col gap-3 text-sm>
+    <div flex items-center>
+      <div i-carbon:chat mr-2 text-blue-400 />
+      <span>CNCF Slack: #openfeature</span>
+    </div>
+    <div flex items-center>
+      <div i-carbon:chat mr-2 text-amber-400 />
+      <span>CNCF Slack: #opentelemetry</span>
+    </div>
+    <div flex items-center>
+      <div i-carbon:logo-twitter mr-2 text-blue-300 />
+      <span>@openfeature / @opentelemetry</span>
+    </div>
+  </div>
+</div>
 
 </div>
 
-<div>
-
-### Connect
-
-- 💬 CNCF Slack: #openfeature
-- 💬 CNCF Slack: #opentelemetry
-- 🐦 @openfeature / @opentelemetry
-
-</div>
-
-</div>
-
-<div class="abs-br m-6 text-sm opacity-50">
-Slides: [your-url-here]
+<div class="abs-br m-6 flex items-center gap-2 opacity-50">
+  <div i-carbon:presentation-file />
+  <span text-sm>Slides: github.com/open-feature/presentations</span>
 </div>
 
 <!--
