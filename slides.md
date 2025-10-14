@@ -14,9 +14,7 @@ fonts:
   serif: 'Architects Daughter'
   mono: 'Fira Code'
 mdc: true
-clicks: 0
 preload: false
-glowSeed: 229
 routerMode: hash
 info: |
   ## Feature Flags as First-Class Signals in Observability
@@ -80,32 +78,6 @@ class: px-35
       </div>
     </div>
   </div>
-</div>
-
----
-clicks: 3
----
-
-<div
-  class="mermaid-container transition-all duration-500"
-  :class="{
-    'scale-300 translate-x-200': $clicks === 1,
-    'scale-200 translate-x-40 translate-y-10': $clicks === 2,
-    'scale-50': $clicks === 0
-  }"
->
-
-```mermaid {scale: 0.8}
-graph LR
-    A[OpenFeature SDK] --> B[Flag Evaluation]
-    B --> C[OpenTelemetry]
-    C --> D[Observability Platform]
-    
-    style A fill:#4a9eff
-    style C fill:#f5a623
-    style D fill:#6f6
-```
-
 </div>
 
 ---
@@ -327,36 +299,34 @@ class: py-10
 
 </div>
 
-<div v-click class="mt-6 text-center opacity-70">
+<!-- <div v-click class="mt-6 text-center opacity-70">
 [IMAGE PLACEHOLDER: Screenshot of trace or dashboard with NO reference to feature flags]
-</div>
+</div> -->
 
 <!--
 Observability tools show us the symptoms, but not the cause when flags are involved.
 -->
 
 ---
-layout: default
+class: py-10
 ---
 
-# Real-World Example: OpenTelemetry Demo
+# Case Study: OpenTelemetry Demo
 
-<div class="grid grid-cols-2 gap-6 mt-4">
+<span>A real application demonstrating the observability gap</span>
+
+<div class="grid grid-cols-2 gap-8 mt-4">
 
 <div>
 
-<v-clicks>
+### What Is the OTel Demo?
 
-### The Scenario
+<v-clicks class="mt-4">
 
-A feature flag enables a **product recommendation** feature
-
-The feature has a **hidden performance bug**
-
-Users experience:
-- 🐌 Slow page loads
-- ⏰ Request timeouts
-- 💥 Increased errors
+- Full **microservices e-commerce** app
+- 10+ services in multiple languages
+- Production-like architecture
+- Built-in **OpenFeature** integration
 
 </v-clicks>
 
@@ -364,40 +334,206 @@ Users experience:
 
 <div v-click>
 
-### What Teams See
+### Built-in feature flags that **intentionally** trigger problems:
 
-```yaml
-# Dashboard
-metrics:
-  - response_time: ⬆️ 3000ms (150ms)
-  - error_rate: ⬆️ 15% (0.1%)
-  - timeouts: ⬆️ 40%
+<div v-click class="mt-3 space-y-2 text-sm">
 
-traces:
-  - status: ERROR
-  - duration: 5000ms
-  - span: recommendation_service
-```
+<div class="p-2 bg-red-900/20 border border-red-500/30 rounded">
+🔥 <code class="text-xs">recommendationServiceCacheFailure</code><br/>
+<span class="opacity-70 text-xs">Exponential memory leak (1.4x growth)</span>
+</div>
 
-<div class="mt-2 text-red-400 text-sm">
-❓ No indication of feature flag involvement
+<div class="p-2 bg-orange-900/20 border border-orange-500/30 rounded">
+⚠️ <code class="text-xs">paymentServiceUnreachable</code><br/>
+<span class="opacity-70 text-xs">Bad address → service appears down</span>
+</div>
+
+<div class="p-2 bg-amber-900/20 border border-amber-500/30 rounded">
+⏰ <code class="text-xs">imageSlowLoad</code><br/>
+<span class="opacity-70 text-xs">Envoy fault injection → slow images</span>
 </div>
 
 </div>
 
 </div>
 
-<div v-click class="mt-4 text-center opacity-70 text-sm">
-[IMAGE PLACEHOLDER: OTel Demo dashboard showing error spike]
+</div>
+
+<div v-click class="mt-6 p-4 bg-blue-900/20 border border-blue-500/30 rounded text-center">
+<span class="text-blue-300">💡 Key Insight:</span> These are <span class="font-bold">real production scenarios</span> — feature flags causing issues that look like bugs
 </div>
 
 <!--
-In the OTel demo, we can simulate this exact scenario. The problem is invisible.
+The OTel demo is perfect for demonstrating this - it has built-in problem scenarios triggered by flags.
 -->
 
 ---
 class: py-10
-glowSeed: 175
+---
+
+# What Traditional Tools Show
+
+<div class="text-center mb-4">
+<span class="opacity-80">The observability data <span class="text-red-400">without</span> feature flag context</span>
+</div>
+
+<div class="grid grid-cols-2 gap-6">
+
+<div>
+
+### Metrics Dashboard
+
+```yaml
+recommendation_service:
+  memory_usage: ⬆️ 2.5GB (was 150MB)
+  cpu_usage: ⬆️ 85% (was 12%)
+  error_rate: ⬆️ 23% (was 0.1%)
+  
+p95_latency:
+  overall: ⬆️ 3200ms (was 145ms)
+  
+pod_restarts: ⬆️ 12 (last 10 min)
+```
+
+<div v-click class="mt-3 p-2 bg-red-900/20 border border-red-500/30 rounded text-xs">
+❓ Something is wrong, but <span class="font-bold">what changed?</span>
+</div>
+
+</div>
+
+<div>
+
+### Distributed Trace
+
+```yaml
+trace_id: 7f8a9b2c3d4e5f6a
+duration: 5240ms
+status: ERROR
+
+spans:
+  - frontend: 120ms ✅
+  - recommendation_service: 4800ms ⚠️
+      • cache_lookup: 4650ms
+      • status: RESOURCE_EXHAUSTED
+  - product_catalog: 80ms ✅
+  - checkout: TIMEOUT ❌
+```
+
+<div v-click class="mt-3 p-2 bg-red-900/20 border border-red-500/30 rounded text-xs">
+❓ The recommendation service is slow, but <span class="font-bold">why?</span>
+</div>
+
+</div>
+
+</div>
+
+<div v-click class="mt-6 text-center text-xl">
+<span class="text-red-400 font-bold">The feature flag change is invisible</span> — treated as an implementation detail
+</div>
+
+<div v-click class="mt-4 text-center opacity-70 text-sm">
+[IMAGE PLACEHOLDER: Grafana/Jaeger dashboard showing metrics and traces WITHOUT flag context]
+</div>
+
+<!--
+This is the core problem - all the symptoms are visible, but the root cause is hidden.
+-->
+
+---
+layout: default
+---
+
+# The Investigation Begins 🔍
+
+<div class="text-center mb-6">
+<span class="opacity-80">How teams waste hours without flag observability</span>
+</div>
+
+<div class="grid grid-cols-3 gap-4">
+
+<div v-click border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm>
+  <div flex items-center bg="blue-800/30" backdrop-blur px-3 py-2>
+    <div i-carbon:time text-blue-300 mr-2 />
+    <span class="font-semibold text-sm">10:05 AM</span>
+  </div>
+  <div px-3 py-3 text-xs>
+    <div class="mb-2 font-semibold">Check Recent Deploys</div>
+    <div class="opacity-70">"No new versions deployed in 48 hours..."</div>
+  </div>
+</div>
+
+<div v-click border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm>
+  <div flex items-center bg="blue-800/30" backdrop-blur px-3 py-2>
+    <div i-carbon:time text-blue-300 mr-2 />
+    <span class="font-semibold text-sm">10:25 AM</span>
+  </div>
+  <div px-3 py-3 text-xs>
+    <div class="mb-2 font-semibold">Review Code Changes</div>
+    <div class="opacity-70">"Nothing merged to recommendation service..."</div>
+  </div>
+</div>
+
+<div v-click border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm>
+  <div flex items-center bg="blue-800/30" backdrop-blur px-3 py-2>
+    <div i-carbon:time text-blue-300 mr-2 />
+    <span class="font-semibold text-sm">10:45 AM</span>
+  </div>
+  <div px-3 py-3 text-xs>
+    <div class="mb-2 font-semibold">Examine Dependencies</div>
+    <div class="opacity-70">"All downstream services healthy..."</div>
+  </div>
+</div>
+
+<div v-click border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm>
+  <div flex items-center bg="orange-800/30" backdrop-blur px-3 py-2>
+    <div i-carbon:time text-orange-300 mr-2 />
+    <span class="font-semibold text-sm">11:15 AM</span>
+  </div>
+  <div px-3 py-3 text-xs>
+    <div class="mb-2 font-semibold">Restart Services</div>
+    <div class="opacity-70">"Problem returns within 5 minutes..."</div>
+  </div>
+</div>
+
+<div v-click border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm>
+  <div flex items-center bg="orange-800/30" backdrop-blur px-3 py-2>
+    <div i-carbon:time text-orange-300 mr-2 />
+    <span class="font-semibold text-sm">11:50 AM</span>
+  </div>
+  <div px-3 py-3 text-xs>
+    <div class="mb-2 font-semibold">Dig Through Logs</div>
+    <div class="opacity-70">"Memory exhaustion, but why now?"</div>
+  </div>
+</div>
+
+<div v-click border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm>
+  <div flex items-center bg="red-800/30" backdrop-blur px-3 py-2>
+    <div i-carbon:time text-red-300 mr-2 />
+    <span class="font-semibold text-sm">12:30 PM</span>
+  </div>
+  <div px-3 py-3 text-xs>
+    <div class="mb-2 font-semibold">Ask in Slack</div>
+    <div class="opacity-70 italic">"Did anyone change anything?"</div>
+  </div>
+</div>
+
+</div>
+
+<div v-click class="mt-6 p-4 bg-red-900/20 border border-red-500/30 rounded text-center">
+<div class="text-xl mb-2">⏰ <span class="font-bold">2.5 hours wasted</span></div>
+<div class="text-sm opacity-70">Finally someone remembers: "Oh, I toggled that cache optimization flag..."</div>
+</div>
+
+<div v-click class="mt-4 text-center text-lg">
+The flag change was <span class="text-amber-400 font-bold">critical information</span>, but observability treated it as <span class="text-red-400 font-bold">irrelevant</span>
+</div>
+
+<!--
+This timeline is all too familiar - hours of guesswork when the answer should be obvious.
+-->
+
+---
+class: py-10
 ---
 
 # Why This Matters
@@ -456,16 +592,58 @@ The impact is real - longer incidents, wasted engineering time, and unnecessary 
 
 ---
 layout: section
-glowSeed: 200
 ---
 
 # The Evolution of Feature Flag Observability
 
 <span class="opacity-80">How teams have tried to solve this problem</span>
 
+<div class="mt-16 grid grid-cols-4 gap-4">
+
+<div 
+  border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm p-4 text-center
+  class="animate-fade-in opacity-0"
+  style="animation-delay: 0.3s; animation-fill-mode: forwards;"
+>
+  <div class="text-3xl mb-2">🙈</div>
+  <div class="font-bold mb-1">Stage 1</div>
+  <div class="text-sm opacity-70">Flying Blind</div>
+</div>
+
+<div 
+  border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm p-4 text-center
+  class="animate-fade-in opacity-0"
+  style="animation-delay: 0.8s; animation-fill-mode: forwards;"
+>
+  <div class="text-3xl mb-2">✍️</div>
+  <div class="font-bold mb-1">Stage 2</div>
+  <div class="text-sm opacity-70">Manual Events</div>
+</div>
+
+<div 
+  border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm p-4 text-center
+  class="animate-fade-in opacity-0"
+  style="animation-delay: 1.3s; animation-fill-mode: forwards;"
+>
+  <div class="text-3xl mb-2">🤖</div>
+  <div class="font-bold mb-1">Stage 3</div>
+  <div class="text-sm opacity-70">Auto Mapping</div>
+</div>
+
+<div 
+  border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm p-4 text-center
+  class="animate-fade-in opacity-0"
+  style="animation-delay: 1.8s; animation-fill-mode: forwards;"
+>
+  <div class="text-3xl mb-2">🎯</div>
+  <div class="font-bold mb-1">Stage 4</div>
+  <div class="text-sm opacity-70">Trace-Level</div>
+</div>
+
+</div>
+
 ---
 class: py-10
-glowSeed: 140
 clicks: 4
 ---
 
@@ -1720,7 +1898,6 @@ Together, we can make feature flags first-class citizens in observability.
 ---
 layout: center
 class: text-center
-glowSeed: 300
 ---
 
 # <span class="font-serif">Thank You! 🙏</span>

@@ -5,6 +5,7 @@
   "scripts": {
     "build": "slidev build",
     "dev": "slidev --open",
+    "experiments": "slidev experiments.md --open --force",
     "export": "slidev export"
   },
   "dependencies": {
@@ -13,6 +14,10 @@
     "@slidev/cli": "^52.2.5",
     "@slidev/theme-default": "latest",
     "@slidev/theme-seriph": "latest",
+    "chart.js": "^4.5.1",
+    "chartjs-plugin-annotation": "^3.1.0",
+    "slidev-addon-fancy-arrow": "^0.13.11",
+    "slidev-addon-qrcode": "^1.0.2",
     "vue": "^3.5.22"
   }
 }
