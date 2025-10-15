@@ -306,22 +306,33 @@ Observability tools show us the symptoms, but not the cause when flags are invol
 class: py-10
 ---
 
-# Case Study: OpenTelemetry Demo
+# A Real-World Example: OpenTelemetry Demo
 
-<span>A real application demonstrating the observability gap</span>
+<span>Feature flags that trigger production-like issues</span>
 
-<div class="grid grid-cols-2 gap-8 mt-4">
+<div class="grid grid-cols-2 gap-8 mt-6">
 
 <div>
 
-### What Is the OTel Demo?
+<v-clicks>
 
-<v-clicks class="mt-4">
+<div>
 
-- Full **microservices e-commerce** app
-- 10+ services in multiple languages
-- Production-like architecture
-- Built-in **OpenFeature** integration
+### Astronomy Shop
+
+- Full **microservices e-commerce** platform
+- 10+ services, multiple languages
+- Production-grade observability stack
+- Uses **OpenFeature** for feature flagging
+
+</div>
+
+<div class="mt-4 p-3 bg-purple-900/20 border border-purple-500/30 rounded">
+<div class="text-sm font-semibold text-purple-300 mb-2">🎯 Perfect Test Bed</div>
+<div class="text-xs opacity-80">
+Includes flags that deliberately enable problems to demonstrate observability challenges
+</div>
+</div>
 
 </v-clicks>
 
@@ -329,202 +340,136 @@ class: py-10
 
 <div v-click>
 
-### Built-in feature flags that **intentionally** trigger problems:
+### Problem Scenarios
 
-<div v-click class="mt-3 space-y-2 text-sm">
+<div class="mt-3 space-y-2">
 
-<div class="p-2 bg-red-900/20 border border-red-500/30 rounded">
-🔥 <code class="text-xs">recommendationServiceCacheFailure</code><br/>
-<span class="opacity-70 text-xs">Exponential memory leak (1.4x growth)</span>
+<div class="p-3 bg-red-900/20 border border-red-500/30 rounded">
+<div class="font-semibold text-sm mb-1 flex items-center">
+<div i-carbon:warning-alt text-red-400 mr-2 />
+<code class="text-xs">recommendationServiceCacheFailure</code>
+</div>
+<div class="text-xs opacity-70">Memory leak → 1.4x exponential growth → OOM crashes</div>
 </div>
 
-<div class="p-2 bg-orange-900/20 border border-orange-500/30 rounded">
-⚠️ <code class="text-xs">paymentServiceUnreachable</code><br/>
-<span class="opacity-70 text-xs">Bad address → service appears down</span>
+<div class="p-3 bg-orange-900/20 border border-orange-500/30 rounded">
+<div class="font-semibold text-sm mb-1 flex items-center">
+<div i-carbon:warning-alt text-orange-400 mr-2 />
+<code class="text-xs">paymentServiceUnreachable</code>
+</div>
+<div class="text-xs opacity-70">Invalid endpoint → all payment requests fail</div>
 </div>
 
-<div class="p-2 bg-amber-900/20 border border-amber-500/30 rounded">
-⏰ <code class="text-xs">imageSlowLoad</code><br/>
-<span class="opacity-70 text-xs">Envoy fault injection → slow images</span>
+<div class="p-3 bg-amber-900/20 border border-amber-500/30 rounded">
+<div class="font-semibold text-sm mb-1 flex items-center">
+<div i-carbon:warning-alt text-amber-400 mr-2 />
+<code class="text-xs">imageSlowLoad</code>
+</div>
+<div class="text-xs opacity-70">Fault injection → 5s image load latency</div>
 </div>
 
 </div>
 
 </div>
 
-</div>
-
-<div v-click class="mt-6 p-4 bg-blue-900/20 border border-blue-500/30 rounded text-center">
-<span class="text-blue-300">💡 Key Insight:</span> These are <span class="font-bold">real production scenarios</span> — feature flags causing issues that look like bugs
 </div>
 
 <!--
-The OTel demo is perfect for demonstrating this - it has built-in problem scenarios triggered by flags.
+The OTel demo provides realistic scenarios where flags cause issues that mimic code bugs.
+This is exactly what happens in production - flags change behavior, but observability is blind to them.
 -->
 
 ---
 class: py-10
 ---
 
-# What Traditional Tools Show
+# Impact vs Root Cause
 
-<div class="text-center mb-4">
-<span class="opacity-80">The observability data <span class="text-red-400">without</span> feature flag context</span>
+<div class="text-center mb-6">
+<span class="opacity-80">Observability shows the <span class="text-red-400">symptoms</span>, but hides the <span class="text-purple-400">diagnosis</span></span>
 </div>
 
 <div class="grid grid-cols-2 gap-6">
 
-<div>
-
-### Metrics Dashboard
+<div border="2 solid red-500/30" rounded-lg overflow-hidden bg="red-900/20" backdrop-blur-sm>
+  <div flex items-center bg="red-800/30" backdrop-blur px-4 py-3>
+    <div i-carbon:chart-line text-red-300 text-xl mr-3 />
+    <h3 class="text-red-300 font-semibold">What Your Dashboard Shows</h3>
+  </div>
+  <div px-4 py-4>
+    
+<div v-click class="space-y-3 text-sm">
 
 ```yaml
 recommendation_service:
-  memory_usage: ⬆️ 2.5GB (was 150MB)
-  cpu_usage: ⬆️ 85% (was 12%)
-  error_rate: ⬆️ 23% (was 0.1%)
+  memory: 2.5GB ⬆️ (was 150MB)
+  cpu: 85% ⬆️ (was 12%)
+  errors: 23% ⬆️ (was 0.1%)
+  p95_latency: 3200ms ⬆️ (was 145ms)
   
-p95_latency:
-  overall: ⬆️ 3200ms (was 145ms)
-  
-pod_restarts: ⬆️ 12 (last 10 min)
+pod_restarts: 12 in last 10 min
 ```
 
-<div v-click class="mt-3 p-2 bg-red-900/20 border border-red-500/30 rounded text-xs">
-❓ Something is wrong, but <span class="font-bold">what changed?</span>
+<div class="p-2 bg-red-900/30 border border-red-500/40 rounded text-xs">
+🚨 <span class="font-bold">Clear Impact</span>: Something is broken<br/>
+❓ <span class="font-bold">Unknown Cause</span>: No code changes, no deploys...
 </div>
 
 </div>
 
-<div>
+  </div>
+</div>
 
-### Distributed Trace
+<div border="2 solid purple-500/30" rounded-lg overflow-hidden bg="purple-900/20" backdrop-blur-sm>
+  <div flex items-center bg="purple-800/30" backdrop-blur px-4 py-3>
+    <div i-carbon:flag text-purple-300 text-xl mr-3 />
+    <h3 class="text-purple-300 font-semibold">What's Actually Happening</h3>
+  </div>
+  <div px-4 py-4>
+    
+<div v-click class="space-y-3">
 
-```yaml
-trace_id: 7f8a9b2c3d4e5f6a
-duration: 5240ms
-status: ERROR
+<div class="text-sm font-mono">
+<div class="opacity-70 mb-2">Flag evaluation:</div>
 
-spans:
-  - frontend: 120ms ✅
-  - recommendation_service: 4800ms ⚠️
-      • cache_lookup: 4650ms
-      • status: RESOURCE_EXHAUSTED
-  - product_catalog: 80ms ✅
-  - checkout: TIMEOUT ❌
+```typescript
+recommendationServiceCacheFailure
+  → variant: "on"
+  → timestamp: 10:03 AM
 ```
 
-<div v-click class="mt-3 p-2 bg-red-900/20 border border-red-500/30 rounded text-xs">
-❓ The recommendation service is slow, but <span class="font-bold">why?</span>
+</div>
+
+<div class="p-3 bg-purple-900/30 border border-purple-500/40 rounded">
+<div class="text-xs font-semibold mb-2 text-purple-300">The Hidden Truth</div>
+<div class="text-xs space-y-1">
+<div>✅ Quick fix: Toggle flag off → problem gone</div>
+<div>⏱️ Gives time to debug properly</div>
+<div>🎯 But you don't know this is the root cause</div>
+</div>
 </div>
 
 </div>
 
+  </div>
 </div>
 
-<div v-click class="mt-6 text-center text-xl">
-<span class="text-red-400 font-bold">The feature flag change is invisible</span> — treated as an implementation detail
 </div>
 
-<div v-click class="mt-4 text-center opacity-70 text-sm">
-[IMAGE PLACEHOLDER: Grafana/Jaeger dashboard showing metrics and traces WITHOUT flag context]
+<div v-click class="mt-6 p-4 bg-amber-900/20 border border-amber-500/30 rounded">
+<div class="text-center">
+<div class="text-lg mb-2">
+<span class="text-amber-300 font-bold">The Mitigation Problem:</span> 
+</div>
+<div class="text-sm opacity-90">
+Hours spent restarting pods, rolling back code, and debugging — when a <span class="font-bold text-green-400">30-second flag toggle</span> would have stopped the bleeding
+</div>
+</div>
 </div>
 
 <!--
-This is the core problem - all the symptoms are visible, but the root cause is hidden.
--->
-
----
-layout: default
----
-
-# The Investigation Begins 🔍
-
-<div class="text-center mb-6">
-<span class="opacity-80">How teams waste hours without flag observability</span>
-</div>
-
-<div class="grid grid-cols-3 gap-4">
-
-<div v-click border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm>
-  <div flex items-center bg="blue-800/30" backdrop-blur px-3 py-2>
-    <div i-carbon:time text-blue-300 mr-2 />
-    <span class="font-semibold text-sm">10:05 AM</span>
-  </div>
-  <div px-3 py-3 text-xs>
-    <div class="mb-2 font-semibold">Check Recent Deploys</div>
-    <div class="opacity-70">"No new versions deployed in 48 hours..."</div>
-  </div>
-</div>
-
-<div v-click border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm>
-  <div flex items-center bg="blue-800/30" backdrop-blur px-3 py-2>
-    <div i-carbon:time text-blue-300 mr-2 />
-    <span class="font-semibold text-sm">10:25 AM</span>
-  </div>
-  <div px-3 py-3 text-xs>
-    <div class="mb-2 font-semibold">Review Code Changes</div>
-    <div class="opacity-70">"Nothing merged to recommendation service..."</div>
-  </div>
-</div>
-
-<div v-click border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm>
-  <div flex items-center bg="blue-800/30" backdrop-blur px-3 py-2>
-    <div i-carbon:time text-blue-300 mr-2 />
-    <span class="font-semibold text-sm">10:45 AM</span>
-  </div>
-  <div px-3 py-3 text-xs>
-    <div class="mb-2 font-semibold">Examine Dependencies</div>
-    <div class="opacity-70">"All downstream services healthy..."</div>
-  </div>
-</div>
-
-<div v-click border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm>
-  <div flex items-center bg="orange-800/30" backdrop-blur px-3 py-2>
-    <div i-carbon:time text-orange-300 mr-2 />
-    <span class="font-semibold text-sm">11:15 AM</span>
-  </div>
-  <div px-3 py-3 text-xs>
-    <div class="mb-2 font-semibold">Restart Services</div>
-    <div class="opacity-70">"Problem returns within 5 minutes..."</div>
-  </div>
-</div>
-
-<div v-click border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm>
-  <div flex items-center bg="orange-800/30" backdrop-blur px-3 py-2>
-    <div i-carbon:time text-orange-300 mr-2 />
-    <span class="font-semibold text-sm">11:50 AM</span>
-  </div>
-  <div px-3 py-3 text-xs>
-    <div class="mb-2 font-semibold">Dig Through Logs</div>
-    <div class="opacity-70">"Memory exhaustion, but why now?"</div>
-  </div>
-</div>
-
-<div v-click border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm>
-  <div flex items-center bg="red-800/30" backdrop-blur px-3 py-2>
-    <div i-carbon:time text-red-300 mr-2 />
-    <span class="font-semibold text-sm">12:30 PM</span>
-  </div>
-  <div px-3 py-3 text-xs>
-    <div class="mb-2 font-semibold">Ask in Slack</div>
-    <div class="opacity-70 italic">"Did anyone change anything?"</div>
-  </div>
-</div>
-
-</div>
-
-<div v-click class="mt-6 p-4 bg-red-900/20 border border-red-500/30 rounded text-center">
-<div class="text-xl mb-2">⏰ <span class="font-bold">2.5 hours wasted</span></div>
-<div class="text-sm opacity-70">Finally someone remembers: "Oh, I toggled that cache optimization flag..."</div>
-</div>
-
-<div v-click class="mt-4 text-center text-lg">
-The flag change was <span class="text-amber-400 font-bold">critical information</span>, but observability treated it as <span class="text-red-400 font-bold">irrelevant</span>
-</div>
-
-<!--
-This timeline is all too familiar - hours of guesswork when the answer should be obvious.
+This is the key insight - you can see something is wrong, but you can't see the easiest fix.
+The flag toggle is RIGHT THERE but invisible to your observability tools.
 -->
 
 ---
@@ -533,7 +478,7 @@ class: py-10
 
 # Why This Matters
 
-<span>The real cost of hidden feature flags</span>
+<span>The hidden cost of invisible feature flags</span>
 
 <div mt-8 />
 
@@ -544,28 +489,28 @@ class: py-10
     <div i-carbon:time text-6xl text-red-300 />
   </div>
   <div px-4 py-4 text-center>
-    <div text-xl font-bold mb-2>Longer MTTR</div>
-    <div text-sm opacity-70>Mean Time to Recovery increases when root cause is hidden</div>
+    <div text-xl font-bold mb-2>Slower Recovery</div>
+    <div text-sm opacity-70>MTTR increases when the easiest fix is invisible</div>
   </div>
 </div>
 
 <div v-click border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm h-full>
   <div flex items-center justify-center bg="white/10" backdrop-blur px-4 py-6>
-    <div i-carbon:currency-dollar text-6xl text-amber-300 />
+    <div i-carbon:search text-6xl text-amber-300 />
   </div>
   <div px-4 py-4 text-center>
-    <div text-xl font-bold mb-2>Wasted Time</div>
-    <div text-sm opacity-70>Engineers spend hours debugging code that isn't broken</div>
+    <div text-xl font-bold mb-2>Wrong Direction</div>
+    <div text-sm opacity-70>Debugging code that isn't actually broken</div>
   </div>
 </div>
 
 <div v-click border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm h-full>
   <div flex items-center justify-center bg="white/10" backdrop-blur px-4 py-6>
-    <div i-carbon:warning-alt text-6xl text-orange-300 />
+    <div i-carbon:fire text-6xl text-orange-300 />
   </div>
   <div px-4 py-4 text-center>
-    <div text-xl font-bold mb-2>All-Hands Incidents</div>
-    <div text-sm opacity-70>What should be a quick rollback becomes a major incident</div>
+    <div text-xl font-bold mb-2>Escalation</div>
+    <div text-sm opacity-70>Simple toggle becomes all-hands incident</div>
   </div>
 </div>
 
@@ -573,16 +518,16 @@ class: py-10
 
 <div v-click mt-6 flex justify-center>
   <div
-    border="2 solid white/5" bg="white/5" backdrop-blur-sm
+    border="2 solid purple-500/30" bg="purple-900/20" backdrop-blur-sm
     rounded-lg px-6 py-3 flex items-center gap-3
   >
-    <div i-carbon:idea text-yellow-300 text-2xl />
-    <span text-lg class="font-serif">Feature flag observability transforms incident response</span>
+    <div i-carbon:idea text-purple-300 text-2xl />
+    <span text-lg class="font-serif">We need feature flags as <span class="text-purple-400 font-bold">first-class signals</span> in observability</span>
   </div>
 </div>
 
 <!--
-The impact is real - longer incidents, wasted engineering time, and unnecessary stress.
+This is why solving flag observability matters - it's not just nice to have, it's critical for modern operations.
 -->
 
 ---
