@@ -6,23 +6,28 @@ This is a **Slidev-based presentation** for KubeCon + CloudNativeCon 2025 about 
 ## Architecture & Structure
 
 ### Core Framework: Slidev
-- **Main presentation file**: `slides.md` (1500+ lines of presentation content)
+- **Main presentation file**: `slides.md` (1900+ lines of presentation content)
 - **Theme**: Seriph theme with dark color scheme
-- **Interactive elements**: Vue components with `<v-clicks>` and progressive reveals
+- **Interactive elements**: Vue components with `<v-clicks>`, `<v-after>`, and progressive reveals
 - **Build system**: Uses Vite internally, builds to `dist/` directory
 
 ### File Organization Pattern
 ```
-slides.md           # Main presentation content with YAML frontmatter
-components/         # Vue components (Counter.vue for interactive demos)
-pages/              # Additional slide pages (imported-slides.md)  
-snippets/          # Code examples referenced in slides (external.ts)
-uno.config.ts       # UnoCSS configuration (atomic CSS framework)
-tailwind.config.js  # Legacy Tailwind config (converted to UnoCSS)
-ABSTRACT.md        # Conference talk abstract
-NARRATIVE.md       # Detailed presentation flow and timing
-LLMS.txt            # AI assistance for sli.dev
-```### Development Workflow
+slides.md              # Main presentation content with YAML frontmatter
+components/            # Vue components
+pages/                 # Additional slide pages (imported-slides.md)  
+snippets/              # Code examples referenced in slides (external.ts)
+public/                # Static assets (images, logos, recordings)
+uno.config.ts          # UnoCSS configuration (atomic CSS framework)
+style.css              # Global custom styles
+global-bottom.vue      # Global bottom component for all slides
+ABSTRACT.md            # Conference talk abstract
+NARRATIVE.md           # Detailed presentation flow and timing
+STYLES.md              # OpenFeature presentation style guide
+LLMS.txt               # AI assistance documentation for Slidev
+```
+
+### Development Workflow
 - **Start dev server**: `pnpm dev` (opens automatically on localhost:3030)
 - **Production build**: `pnpm build` → `dist/` directory
 - **Export slides**: `pnpm export` (for PDF/static export)
@@ -31,16 +36,19 @@ LLMS.txt            # AI assistance for sli.dev
 ## Key Patterns & Conventions
 
 ### Slide Content Structure
-- **YAML frontmatter** defines theme, title, layout configuration
-- **Progressive disclosure** using `<v-clicks>` and `<v-after>` components
-- **Image placeholders** with descriptive alt text: `[IMAGE PLACEHOLDER: description]`
+- **YAML frontmatter** defines theme, title, layout configuration, and fonts
+- **Progressive disclosure** using `<v-clicks>`, `<v-after>`, and click-controlled animations
+- **Visual markup** with `v-mark` for circling, crossing out, and underlining text
+- **Image assets** in `public/` directory with descriptive names
 - **Code blocks** with syntax highlighting and line highlighting: `{all|3|4-6|all}`
-- **Mermaid diagrams** embedded directly in markdown
+- **Mermaid diagrams** embedded directly in markdown for architecture visualization
+- **Speaker notes** in HTML comments for presenter guidance
 
 ### Vue Component Usage
 - Components in `components/` are auto-imported into slides
-- Example: `<Counter />` component demonstrates interactive presentation elements
+- Available components: `<Counter />` for demonstrations, `<Charts />` for data visualization
 - Props passed from slide context: `<Counter :count="5" />`
+- Global components: `global-bottom.vue` for consistent footer across slides
 
 ### Code Snippet Management
 - Reusable code examples in `snippets/` directory
@@ -84,21 +92,24 @@ The presentation follows a narrative arc:
 
 ### When Editing Slides
 - Maintain YAML frontmatter structure at the top of `slides.md`
-- Use semantic slide layouts: `center`, `two-cols`, `section`, `default`
+- Use semantic slide layouts: `center`, `intro`, `two-cols`, `section`, `default`
 - Keep progressive disclosure logical with `v-click` ordering
 - Update speaker notes for complex slides
+- Follow the **OpenFeature presentation style guide** in `STYLES.md`
 
 ### When Adding Components
 - Place in `components/` directory for auto-import
 - Use Vue 3 Composition API with `<script setup>`
-- Follow existing styling patterns with utility classes
+- Follow existing styling patterns with UnoCSS utility classes
+- Reference `STYLES.md` for component patterns and examples
 
 ### When Styling Content
 - **CSS Framework**: Uses UnoCSS (atomic CSS, Tailwind-compatible)
 - **Configuration**: Extend `uno.config.ts` for custom utilities and shortcuts
 - **Common patterns**: Use `safelist` for presentation-specific utilities
 - **Custom shortcuts**: Defined for slide layouts (`slide-content`, `slide-title`)
-- **Color system**: Custom gray/purple palettes with CSS variable integration
+- **Color system**: Custom gray/purple palettes aligned with OpenFeature branding
+- **Style reference**: See `STYLES.md` for comprehensive color palette and typography guidelines
 
 ### When Modifying Deployment
 - Test locally with `pnpm dev` before deploying
