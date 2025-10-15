@@ -81,53 +81,50 @@ class: px-35
 </div>
 
 ---
-layout: center
-class: text-center
+layout: two-cols
+class: px-6 py-4
 ---
 
-# Imagine This...
+<div class="pr-4">
 
-<span class="opacity-80">The firefighting scenario every team knows</span>
+# <span class="text-red-400">2:35 PM</span> Tuesday
 
-<v-clicks>
+<div class="text-xs opacity-70 mb-4">A familiar story...</div>
 
-<div class="text-2xl mb-8 mt-8">
-🚨 Your monitoring dashboards are <span class="text-red-500 font-bold">flashing red</span>
+<IncidentTimeline :visible-items="$clicks" />
+
 </div>
 
-<div class="text-xl mb-8">
-📈 Error rates have <span class="text-red-500 font-bold">skyrocketed</span>
-</div>
+::right::
 
-<div class="text-xl mb-8">
-⏰ Your team has spent <span class="text-orange-500 font-bold">hours</span> digging through code
+<div class="pl-4 pt-4">
+  <ProblemCard 
+    service-name="checkout-service"
+    :error-rate="7.14"
+    timestamp="Oct 15, 2025, 2:35 PM"
+  />
+  
+  <div v-click="7" class="mt-3 p-2 bg-red-900/20 border border-red-500/30 rounded text-xs">
+    <div class="font-bold text-red-400 mb-1">⚠️ The Missing Context</div>
+    <div class="opacity-80">Feature flag changes are <span class="font-bold">invisible</span> to traditional monitoring</div>
+  </div>
 </div>
-
-<div class="text-2xl mt-12">
-Hours later, you discover... <span class="text-blue-400 font-bold">it wasn't a bug</span>
-</div>
-
-<div class="text-3xl mt-8 font-serif text-blue-400 font-bold">
-It was a feature flag change 🚩
-</div>
-
-</v-clicks>
 
 <!--
-[IMAGE PLACEHOLDER: Chaotic monitoring dashboard showing red alerts, spike in errors, and elevated latency graphs]
-This scenario plays out in engineering teams every day. Let's talk about why.
+This is the reality for teams using feature flags without proper observability.
+The problem card shows everything EXCEPT what actually changed - the feature flag.
+This timeline plays out daily in engineering teams everywhere.
+3+ hours wasted because the monitoring tool couldn't tell us about the flag change.
 -->
 
 ---
+layout: center
+---
 
-# The Problem
-
-<div class="text-center text-2xl leading-relaxed mt-16">
-<v-click>
+<div class="text-center text-3xl mt-12">
 
 Feature flags are <span class="font-serif text-red-400">hidden</span> from observability tools
 
-</v-click>
 <v-click>
 
 making it <span class="font-serif text-orange-400">difficult</span> to pinpoint changes
@@ -140,9 +137,6 @@ as the <span class="font-serif text-blue-400">root cause</span> of incidents
 </v-click>
 
 </div>
-<div class="mt-12 flex justify-center opacity-90">
-  <img v-click class="w-lg" src="/failures.png" />
-</div>
 
 <!--
 This is the core problem we're solving today. Feature flags operate in the shadows.
@@ -150,6 +144,7 @@ This is the core problem we're solving today. Feature flags operate in the shado
 
 ---
 class: py-10
+hide: true
 ---
 
 # What Are Feature Flags?
