@@ -969,67 +969,6 @@ class: py-8
 </div>
 
 ---
-layout: default
----
-
-# Trace-Level Example
-
-<div class="grid grid-cols-2 gap-8 mt-8">
-
-<div>
-
-### Traditional Trace
-
-```yaml
-trace_id: abc123
-spans:
-  - name: checkout_service
-    duration: 5000ms
-    status: ERROR
-    attributes:
-      http.method: POST
-      http.status_code: 500
-```
-
-<div v-click class="mt-4 text-red-400">
-❓ Why did this fail?
-</div>
-
-</div>
-
-<div v-click>
-
-### With Flag Observability
-
-```yaml {all|7-11|all}
-trace_id: abc123
-spans:
-  - name: checkout_service
-    duration: 5000ms
-    status: ERROR
-    attributes:
-      feature_flag.key: new-payment-processor
-      feature_flag.variant: treatment
-      feature_flag.provider_name: flagd
-      feature_flag.context.user_id: user_456
-      feature_flag.context.tier: premium
-      http.method: POST
-      http.status_code: 500
-```
-
-<div v-click class="mt-4 text-green-400">
-✅ Flag variant "treatment" caused the error!
-</div>
-
-</div>
-
-</div>
-
-<!--
-With trace-level data, the root cause becomes immediately obvious.
--->
-
----
 layout: center
 ---
 
@@ -1061,7 +1000,6 @@ How OpenFeature & OpenTelemetry defined the solution
 
 ---
 layout: default
-clicks: 8
 ---
 
 # OpenFeature 🤝 OpenTelemetry
@@ -1072,10 +1010,11 @@ clicks: 8
 
 ### OpenFeature
 
+<div class="mt-4" />
+
 - 🚩 Open standard for **feature flagging**
 - 🔌 Vendor-neutral SDK
 - 🎣 **Hook system** for extensibility
-- 🌐 Multi-language support
 
 </div>
 
@@ -1083,158 +1022,119 @@ clicks: 8
 
 ### OpenTelemetry
 
+<div class="mt-4" />
+
 - 📊 Open standard for **observability**
 - 📈 Metrics, traces, and logs
 - 🏷️ **Semantic conventions** for consistency
-- 🔗 End-to-end visibility
 
 </div>
 
 </div>
 
-<div class="mt-8 text-center">
 
-<div v-if="$clicks >= 2 && $clicks < 3">
+<div v-click class="mt-12">
 
-```mermaid {scale: 0.8}
+```mermaid {scale: 0.7}
 graph LR
     A[OpenFeature SDK] -->|Hooks| B[Flag Evaluation]
     B -->|Semantic Convention| C[OpenTelemetry]
+    C -->|Events| D[Observability Platform]
+    C -->|Metrics| D[Observability Platform]
     C -->|Traces| D[Observability Platform]
 ```
 
 </div>
 
-<div v-else-if="$clicks >= 3 && $clicks < 4">
-
-```mermaid {scale: 0.8}
-graph LR
-    A[OpenFeature SDK] -->|Hooks| B[Flag Evaluation]
-    B -->|Semantic Convention| C[OpenTelemetry]
-    C -->|Traces| D[Observability Platform]
-    
-    style A fill:#4a9eff,stroke:#4a9eff,stroke-width:4px
-```
-
-</div>
-
-<div v-else-if="$clicks >= 4 && $clicks < 5">
-
-```mermaid {scale: 0.8}
-graph LR
-    A[OpenFeature SDK] -->|Hooks| B[Flag Evaluation]
-    B -->|Semantic Convention| C[OpenTelemetry]
-    C -->|Traces| D[Observability Platform]
-    
-    style A fill:#4a9eff
-    style B fill:#9f9fff,stroke:#9f9fff,stroke-width:4px
-```
-
-</div>
-
-<div v-else-if="$clicks >= 5 && $clicks < 6">
-
-```mermaid {scale: 0.8}
-graph LR
-    A[OpenFeature SDK] -->|Hooks| B[Flag Evaluation]
-    B -->|Semantic Convention| C[OpenTelemetry]
-    C -->|Traces| D[Observability Platform]
-    
-    style A fill:#4a9eff
-    style C fill:#f5a623,stroke:#f5a623,stroke-width:4px
-```
-
-</div>
-
-<div v-else-if="$clicks >= 6">
-
-```mermaid {scale: 0.8}
-graph LR
-    A[OpenFeature SDK] -->|Hooks| B[Flag Evaluation]
-    B -->|Semantic Convention| C[OpenTelemetry]
-    C -->|Traces| D[Observability Platform]
-    
-    style A fill:#4a9eff
-    style C fill:#f5a623
-    style D fill:#6f6,stroke:#6f6,stroke-width:4px
-```
-
-</div>
-
-</div>
-
-<div v-click class="mt-4 text-center opacity-70 text-sm">
-[IMAGE PLACEHOLDER: OpenFeature and OpenTelemetry logos]
-</div>
-
-<!--
-Two communities came together to solve this problem with open standards.
--->
 
 ---
 layout: default
 ---
 
-# Anatomy of a Feature Flag Evaluation
+# Feature Flag Semantic Convention
 
-### What We Track
+<span class="opacity-80">Standardized attributes that make flag evaluations observable</span>
 
-<div class="grid grid-cols-2 gap-6 mt-4">
-
-<div v-click>
-
-#### Core Attributes
-
-```yaml
-feature_flag.key: "new-checkout"
-feature_flag.variant: "treatment"
-feature_flag.provider_name: "flagd"
-```
-
-</div>
+<div class="grid grid-cols-2 gap-6 mt-6">
 
 <div v-click>
 
-#### Context Data
+### The Obvious Attributes
 
-```yaml
-feature_flag.context.user_id: "user_123"
-feature_flag.context.environment: "prod"
-feature_flag.context.tier: "premium"
-```
+<div class="text-sm space-y-3 mt-3">
+
+<div class="p-2 bg-white/5 rounded">
+<code class="text-blue-300">feature_flag.key</code>
+<div class="text-xs opacity-70 mt-1">The flag identifier (e.g., "new-checkout")</div>
+</div>
+
+<div class="p-2 bg-white/5 rounded">
+<code class="text-blue-300">feature_flag.result.variant</code>
+<div class="text-xs opacity-70 mt-1">Which variant was served (e.g., "on", "treatment")</div>
+</div>
+
+<div class="p-2 bg-white/5 rounded">
+<code class="text-blue-300">feature_flag.result.value</code>
+<div class="text-xs opacity-70 mt-1">The value returned by the flag (e.g., true, false, "blue")</div>
+</div>
+
+<div class="p-2 bg-white/5 rounded">
+<code class="text-blue-300">feature_flag.provider.name</code>
+<div class="text-xs opacity-70 mt-1">Flag provider (e.g., "flagd", "launchdarkly")</div>
+</div>
+
+<div class="p-2 bg-white/5 rounded">
+<code class="text-blue-300">feature_flag.result.reason</code>
+<div class="text-xs opacity-70 mt-1">Why this variant? (e.g., "targeting_match", "default")</div>
+</div>
+
+</div>
+
+</div>
+
+<div v-click="2">
+
+### The Nuanced Attributes
+
+<div class="text-sm space-y-3 mt-3">
+
+<div class="p-3 bg-purple-900/20 border border-purple-500/30 rounded">
+<code class="text-purple-300 font-semibold">feature_flag.set.id</code>
+<div class="text-xs opacity-90 mt-2">
+<span class="font-semibold">Human-readable logical identifier</span> for where this flag is managed
+</div>
+<div class="text-xs opacity-70 mt-1 font-mono">
+"acme-org/web-app/production"
+</div>
+</div>
+
+<div class="p-3 bg-amber-900/20 border border-amber-500/30 rounded">
+<code class="text-amber-300 font-semibold">feature_flag.context.id</code>
+<div class="text-xs opacity-90 mt-2">
+<span class="font-semibold">Provider's context identifier</span> (fallback: targeting key)
+</div>
+<div class="text-xs opacity-70 mt-1">
+Used by providers like LaunchDarkly to lookup stored contexts
+</div>
+</div>
+
+<div class="p-3 bg-green-900/20 border border-green-500/30 rounded">
+<code class="text-green-300 font-semibold">feature_flag.version</code>
+<div class="text-xs opacity-90 mt-2">
+<span class="font-semibold">Ruleset version</span> at evaluation time
+</div>
+<div class="text-xs opacity-70 mt-1">
+Track which configuration was active (number, hash, etc.)
+</div>
+</div>
+
+</div>
 
 </div>
 
 </div>
 
-<div v-click class="mt-4">
 
-#### Full Evaluation Event
-
-```json {*|2-3|4-5|6-11|*}{at:3}
-{
-  "timestamp": "2025-10-10T14:30:00Z",
-  "event_type": "feature_flag_evaluation",
-  "trace_id": "abc123",
-  "span_id": "def456",
-  "attributes": {
-    "feature_flag.key": "new-checkout",
-    "feature_flag.variant": "treatment",
-    "feature_flag.provider_name": "flagd",
-    "feature_flag.context.user_id": "user_123"
-  }
-}
-```
-
-</div>
-
-<div v-click class="mt-2 text-center opacity-70 text-sm">
-[IMAGE PLACEHOLDER: Diagram breaking down flag evaluation]
-</div>
-
-<!--
-These attributes give us everything we need to correlate flags with outcomes.
--->
 
 ---
 layout: default
@@ -1242,12 +1142,16 @@ layout: default
 
 # How It Works: OpenFeature Hooks
 
-```typescript {all|1-3|5-7|9-16|18-24|all}
+```typescript {all|1-2,5-6|1,3,8-9|10-24|26-35|all}{maxHeight: '420px'}
 import { OpenFeature } from '@openfeature/server-sdk';
-import { OtelHook } from '@openfeature/otel-hook';
+import { MyProvider } from 'my-flag-provider';
+import { EventHook } from '@openfeature/open-telemetry-hooks';
+
+// Initialize OpenFeature with your flag provider
+await OpenFeature.setProviderAndWait(new MyProvider());
 
 // Register the OpenTelemetry hook
-OpenFeature.addHooks(new OtelHook());
+OpenFeature.addHooks(new EventHook());
 const client = OpenFeature.getClient();
 
 // Prepare evaluation context
@@ -1266,8 +1170,13 @@ const variant = await client.getStringValue(
 
 // Flag evaluation is now in the trace with attributes:
 //   - feature_flag.key: "new-checkout-flow"
-//   - feature_flag.variant: "treatment"
-//   - feature_flag.context.tier: "premium"
+//   - feature_flag.result.variant: "treatment"
+//   - feature_flag.result.value: "express-checkout"
+//   - feature_flag.result.reason: "targeting_match"
+//   - feature_flag.provider.name: "my-flag-provider"
+//   - feature_flag.set.id: "acme-org/web-app/production"
+//   - feature_flag.version: "v42"
+//   - feature_flag.context.id: "user_123"
 ```
 
 <!--
@@ -1280,50 +1189,16 @@ layout: default
 
 # Flag Evaluation in a Trace
 
-### Distributed Trace View
-
-```yaml {all|3-6|8-14|16-21|all}
-Trace ID: 7f8a9b2c3d4e5f6a
-
-Frontend Service (120ms)
-  ├─ GET /checkout
-  ├─ feature_flag.key: "new-checkout-flow"
-  └─ feature_flag.variant: "treatment"
-
-Checkout Service (890ms)
-  ├─ POST /api/checkout
-  ├─ feature_flag.key: "payment-processor-v2"
-  ├─ feature_flag.variant: "enabled"
-  ├─ feature_flag.context.user_id: "user_123"
-  └─ feature_flag.context.tier: "premium"
-
-Payment Service (2500ms) ⚠️
-  ├─ POST /process-payment
-  ├─ feature_flag.key: "payment-processor-v2"
-  ├─ feature_flag.variant: "enabled"
-  ├─ status: ERROR
-  └─ error: "Connection timeout to payment gateway"
-```
-
-<div v-click class="mt-4 p-3 bg-blue-900 bg-opacity-30 rounded text-sm">
-<span class="text-blue-400">✨ Insight:</span> The "payment-processor-v2" flag's "enabled" variant correlates with the timeout error
-</div>
-
-<div v-click class="mt-2 text-center opacity-70 text-sm">
-[IMAGE PLACEHOLDER: Visual trace waterfall with flag attributes]
-</div>
-
-<!--
-Now we can see exactly which flags contributed to the failure, across services.
--->
+<img src="/traces.png" class="w-full rounded-lg shadow-lg mt-12" />
 
 ---
-layout: center
+layout: default
+class: py-8
 ---
 
 # Why Standards Matter
 
-<div class="grid grid-cols-3 gap-8 mt-8">
+<div class="grid grid-cols-3 gap-8 mt-24">
 
 <div v-click class="text-center">
 <div class="text-4xl mb-4">🔄</div>
@@ -1342,10 +1217,9 @@ layout: center
 <div class="text-xl font-bold mb-2">Adoption</div>
 <div class="text-sm opacity-70">Easy to implement and adopt</div>
 </div>
-
 </div>
 
-<div v-click class="mt-12">
+<div v-click class="mt-12 text-center">
 
 ```mermaid {scale: 0.8}
 graph LR
@@ -1354,14 +1228,11 @@ graph LR
     C --> D[Any Observability Backend]
     
     style B fill:#4a9eff
-    style C fill:#f5a623
+    style C fill:#e89b5f
 ```
 
 </div>
 
-<div v-click class="mt-6 text-center opacity-70 text-sm">
-[IMAGE PLACEHOLDER: Interoperability diagram]
-</div>
 
 <!--
 Standards enable an ecosystem where everything works together seamlessly.
