@@ -5,7 +5,7 @@ css: unocss
 colorSchema: dark
 transition: fade-out
 title: From "What Broke" to "What Changed"
-exportFilename: KubeCon NA 2025 - Feature Flags as First-Class Signals in Observability
+exportFilename: KubeCon NA 2025 - Feature Flags as First-Class concept in Observability
 lineNumbers: false
 drawings:
   persist: false
@@ -17,7 +17,7 @@ mdc: true
 preload: false
 routerMode: hash
 info: |
-  ## Feature Flags as First-Class Signals in Observability
+  ## Feature Flags as First-Class Concept in Observability
   KubeCon + CloudNativeCon 2025
 
   Learn how to integrate feature flag observability into your workflow using OpenFeature and OpenTelemetry standards.
@@ -25,7 +25,7 @@ info: |
 
 <div translate-x--14>
   <h1>
-    From <span v-mark="{ type: 'crossed-off', color: 'red' }" class="font-serif">"What Broke"</span> to <span v-mark="{ type: 'circle' }" class="font-serif">"What Changed"</span>
+    From <span class="font-serif">"What Broke"</span> to <span class="font-serif">"What Changed"</span>
   </h1>
 
   <p>Michael Beemer, Dynatrace<br>Parth Suthar, DevCycle</p>
@@ -385,9 +385,7 @@ class: py-10
 
 # Impact vs Root Cause
 
-<div class="text-center mb-6">
-<span class="opacity-80">Observability shows the <span class="text-red-400">symptoms</span>, but hides the <span class="text-purple-400">diagnosis</span></span>
-</div>
+<span>Observability shows the <span class="text-red-400">symptoms</span>, but hides the <span class="text-purple-400">diagnosis</span></span>
 
 <div class="grid grid-cols-2 gap-6">
 
@@ -522,7 +520,7 @@ class: py-10
     rounded-lg px-6 py-3 flex items-center gap-3
   >
     <div i-carbon:idea text-purple-300 text-2xl />
-    <span text-lg class="font-serif">We need feature flags as <span class="text-purple-400 font-bold">first-class signals</span> in observability</span>
+    <span text-lg class="font-serif">We need feature flags as <span class="text-purple-400 font-bold">first-class concept</span> in observability</span>
   </div>
 </div>
 
@@ -534,11 +532,11 @@ This is why solving flag observability matters - it's not just nice to have, it'
 layout: section
 ---
 
-# The Evolution of Feature Flag Observability
+# Feature Flag Observability
 
-<span class="opacity-80">How teams have tried to solve this problem</span>
+<span class="opacity-80">A progressive approach for teams looking to gain visibility into flags</span>
 
-<div class="mt-16 grid grid-cols-4 gap-4">
+<div class="mt-16 grid grid-cols-5 gap-4">
 
 <div 
   border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm p-4 text-center
@@ -546,7 +544,7 @@ layout: section
   style="animation-delay: 0.3s; animation-fill-mode: forwards;"
 >
   <div class="text-3xl mb-2">🙈</div>
-  <div class="font-bold mb-1">Stage 1</div>
+  <div class="font-bold mb-1">Level 0</div>
   <div class="text-sm opacity-70">Flying Blind</div>
 </div>
 
@@ -555,9 +553,9 @@ layout: section
   class="animate-fade-in opacity-0"
   style="animation-delay: 0.8s; animation-fill-mode: forwards;"
 >
-  <div class="text-3xl mb-2">✍️</div>
-  <div class="font-bold mb-1">Stage 2</div>
-  <div class="text-sm opacity-70">Manual Events</div>
+  <div class="text-3xl mb-2">📢</div>
+  <div class="font-bold mb-1">Level 1</div>
+  <div class="text-sm opacity-70">Broadcast Blast</div>
 </div>
 
 <div 
@@ -565,9 +563,9 @@ layout: section
   class="animate-fade-in opacity-0"
   style="animation-delay: 1.3s; animation-fill-mode: forwards;"
 >
-  <div class="text-3xl mb-2">🤖</div>
-  <div class="font-bold mb-1">Stage 3</div>
-  <div class="text-sm opacity-70">Auto Mapping</div>
+  <div class="text-3xl mb-2">✍️</div>
+  <div class="font-bold mb-1">Level 2</div>
+  <div class="text-sm opacity-70">Manual Events</div>
 </div>
 
 <div 
@@ -575,8 +573,18 @@ layout: section
   class="animate-fade-in opacity-0"
   style="animation-delay: 1.8s; animation-fill-mode: forwards;"
 >
+  <div class="text-3xl mb-2">🤖</div>
+  <div class="font-bold mb-1">Level 3</div>
+  <div class="text-sm opacity-70">Auto Mapping</div>
+</div>
+
+<div 
+  border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm p-4 text-center
+  class="animate-fade-in opacity-0"
+  style="animation-delay: 2.3s; animation-fill-mode: forwards;"
+>
   <div class="text-3xl mb-2">🎯</div>
-  <div class="font-bold mb-1">Stage 4</div>
+  <div class="font-bold mb-1">Level 4</div>
   <div class="text-sm opacity-70">Trace-Level</div>
 </div>
 
@@ -584,237 +592,381 @@ layout: section
 
 ---
 class: py-10
-clicks: 4
 ---
 
-# Stage 1: Flying Blind 🙈
+# Level 0: Flying Blind 🙈
 
-<span>The starting point for most teams</span>
+<div class="text-lg mb-6 opacity-80">You see something is wrong, but have no idea why</div>
 
-<div mt-6 />
-
-<div grid grid-cols-2 gap-6>
-
-<div v-click border="2 solid red-500/30" rounded-lg overflow-hidden bg="red-900/20" backdrop-blur-sm>
-  <div flex items-center bg="red-800/30" backdrop-blur px-4 py-3>
-    <div i-carbon:view-off text-red-300 text-xl mr-3 />
-    <h3 class="text-red-400 font-semibold">The Reality</h3>
-  </div>
-  <div px-4 py-4>
-    <div flex flex-col gap-3>
-      <div flex items-center>
-        <div i-carbon:misuse text-red-400 mr-2 />
-        <span text-sm>No visibility into flag state</span>
-      </div>
-      <div flex items-center>
-        <div i-carbon:edit text-orange-400 mr-2 />
-        <span text-sm>Manual correlation attempts</span>
-      </div>
-      <div flex items-center>
-        <div i-carbon:unknown text-amber-400 mr-2 />
-        <span text-sm>Guesswork during incidents</span>
-      </div>
-      <div flex items-center>
-        <div i-carbon:time text-red-400 mr-2 />
-        <span text-sm>Slow troubleshooting</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div v-click="2">
-  <div text-sm font-semibold mb-3 opacity-70>The Manual Hunt Process</div>
-  <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-3">
-
-```mermaid {scale: 0.35}
-graph LR
-    A[🚨 Incident] --> B[Logs]
-    B --> C[Metrics]
-    C --> D[Deploys]
-    D --> E{Fixed?}
-    E -->|No| F[Slack]
-    F --> G[Maybe?]
-    
-    style A fill:#f66
-    style G fill:#6f6
-```
-
-  </div>
-  <div text-xs mt-3 opacity-70 text-center italic>
-    Hours of manual correlation across systems
-  </div>
-</div>
-
-</div>
-
-<!--
-This is where most teams start. It's painful and inefficient.
--->
-
----
-layout: default
----
-
-# Stage 2: Manual Change Events
-
-<div class="mt-4">
-
-### The Improvement
-
-<div v-click class="mb-4">
-Send change events from feature flag platform → observability tool
-</div>
-
-<div class="grid grid-cols-2 gap-6 mt-4">
-
-<div v-click>
-
-```typescript {monaco-line-height:16}
-// Manual event tracking
-flagManager.on('flag.changed', (event) => {
-  observability.recordEvent({
-    type: 'feature_flag_change',
-    flag: event.flagKey,
-    oldValue: event.previousValue,
-    newValue: event.currentValue,
-    timestamp: Date.now()
-  });
-});
-```
-
-</div>
-
-<div v-click>
-
-### Limitations
-
-- ❌ Manual setup per flag
-- ❌ No trace correlation
-- ❌ Difficult to scale
-- ❌ No per-request impact
-- ❌ Error-prone config
-
-</div>
-
-</div>
-
-</div>
-
-<div v-click class="mt-4 text-center opacity-70 text-sm">
-[IMAGE PLACEHOLDER: Manual event configuration UI]
-</div>
-
-<!--
-Manual events are better than nothing, but they don't scale and lack granularity.
--->
-
----
-layout: default
----
-
-# Stage 3: Automatic Event Mapping
-
-<div class="grid grid-cols-2 gap-6 mt-4">
+<div class="grid grid-cols-2 gap-8">
 
 <div>
 
-### The Evolution
-
 <div v-click>
-Systems that **automatically** understand:
+
+### The Problem
+
+<div class="mt-4 space-y-3">
+<div class="flex items-center gap-2">
+  <div class="i-carbon:view-off text-red-400" />
+  <span class="text-sm">No visibility into flag changes</span>
+</div>
+<div class="flex items-center gap-2">
+  <div class="i-carbon:unknown text-amber-400" />
+  <span class="text-sm">Pure guesswork during incidents</span>
+</div>
+<div class="flex items-center gap-2">
+  <div class="i-carbon:time text-orange-400" />
+  <span class="text-sm">Hours of manual hunting</span>
+</div>
 </div>
 
-<v-clicks>
+</div>
 
-- Where flags are evaluated
-- Which services are affected  
-- Correct entity mapping
-- Send events without manual work
+<div v-click="2" class="mt-6">
 
-</v-clicks>
+### What You See
+
+<div class="p-4 mt-4 bg-red-900/20 border border-red-500/30 rounded-lg text-sm">
+<div class="font-semibold text-red-400 mb-2">🚨 Failure rate spiking!</div>
+<div class="opacity-80">But what changed? No deployments, no code changes...</div>
+<div class="mt-2 italic opacity-70">Time to check logs, metrics, Slack, coffee machine...</div>
+</div>
+
+</div>
 
 </div>
 
 <div v-click>
+
+<ServiceMetricChart 
+  service-name="checkout-service"
+  metric="failure-rate"
+  :show-annotation="false"
+  :spike-click="1"
+  :has-issue="true"
+  :height="240"
+  :width="400"
+/>
+
+<div v-click="3" class="mt-3 p-3 bg-amber-900/20 border border-amber-500/30 rounded text-sm">
+<div class="text-amber-300 font-semibold mb-1">⚠️ The Reality</div>
+<div class="opacity-80">A feature flag was toggled 30 seconds ago, but you have no way to know that.</div>
+</div>
+
+</div>
+
+</div>
+
+---
+class: py-8
+---
+
+# Level 1: Broadcast Blast 📢
+
+<span>Same flag change annotated on all services... but only one is actually using the flag</span>
+
+<div class="grid grid-cols-3 gap-4">
+
+<div>
+<ServiceMetricChart 
+  service-name="checkout-service"
+  metric="failure-rate"
+  :show-annotation="true"
+  :annotation-click="1"
+  :spike-click="1"
+  :has-issue="true"
+  :height="180"
+  :width="280"
+  :max-data-points="30"
+/>
+</div>
+
+<div>
+<ServiceMetricChart 
+  service-name="payment-service"
+  metric="failure-rate"
+  :show-annotation="true"
+  :annotation-click="1"
+  :spike-click="999"
+  :has-issue="false"
+  :height="180"
+  :width="280"
+  :max-data-points="30"
+/>
+</div>
+
+<div>
+<ServiceMetricChart 
+  service-name="recommendation-service"
+  metric="failure-rate"
+  :show-annotation="true"
+  :annotation-click="1"
+  :spike-click="999"
+  :has-issue="false"
+  :height="180"
+  :width="280"
+  :max-data-points="30"
+/>
+</div>
+
+</div>
+
+<div v-click="2" class="mt-6 p-4 bg-red-900/20 border border-red-500/30 rounded-lg">
+<div class="flex items-start gap-3">
+  <div class="i-carbon:warning-alt text-red-400 text-2xl mt-1" />
+  <div>
+    <div class="font-semibold text-red-300 mb-2">The Red Herring Problem</div>
+    <div class="text-sm opacity-90">
+      When you manually configure events, you might send them to services that <span class="font-bold">don't use the flag</span>. 
+      This creates noise during incidents and can send investigations in the wrong direction.
+    </div>
+    <div class="text-sm mt-2 italic opacity-75">
+      "We see the flag changed at the same time, but these services look fine... maybe it's not the flag?"
+    </div>
+  </div>
+</div>
+</div>
+
+<!--
+The visualization shows the key problem: flag annotations appear on all services,
+but only checkout-service actually uses the flag and experiences issues.
+This manual approach doesn't scale and creates misleading signals.
+-->
+
+---
+class: py-8
+---
+
+# Level 2: Manual Change Events ✍️
+
+<span>Send events to specific services... but requires manual mapping and can become outdated</span>
+
+<div v-click class="grid grid-cols-3 gap-4">
+
+<div>
+<ServiceMetricChart 
+  service-name="checkout-service"
+  metric="failure-rate"
+  :show-annotation="true"
+  :annotation-click="1"
+  :spike-click="1"
+  :has-issue="true"
+  :height="180"
+  :width="280"
+  :max-data-points="30"
+/>
+</div>
+
+<div>
+<ServiceMetricChart 
+  service-name="payment-service"
+  metric="failure-rate"
+  :show-annotation="true"
+  :annotation-click="1"
+  :spike-click="999"
+  :has-issue="false"
+  :height="180"
+  :width="280"
+  :max-data-points="30"
+/>
+</div>
+
+<div>
+<ServiceMetricChart 
+  service-name="recommendation-service"
+  metric="failure-rate"
+  :show-annotation="false"
+  :spike-click="999"
+  :has-issue="false"
+  :height="180"
+  :width="280"
+  :max-data-points="30"
+/>
+</div>
+
+</div>
+
+<div v-click="2" class="mt-6 p-4 bg-amber-900/20 border border-amber-500/30 rounded-lg">
+<div class="flex items-start gap-3">
+  <div class="i-carbon:warning-alt text-amber-400 text-2xl mt-1" />
+  <div>
+    <div class="font-semibold text-amber-300 mb-2">The Manual Mapping Problem</div>
+    <div class="text-sm opacity-90">
+      You can <span class="font-bold">manually configure</span> which services receive flag change events, but this requires maintaining a mapping. 
+      As your system evolves, these mappings become <span class="font-bold">outdated</span> — events might go to services that no longer use the flag, 
+      or miss new services that started using it.
+    </div>
+    <div class="text-sm mt-2 italic opacity-75">
+      "We configured this 6 months ago... did we update it when we refactored?"
+    </div>
+  </div>
+</div>
+</div>
+
+---
+class: py-8
+---
+
+# Level 3: Automatic Event Mapping 🤖
+
+<span>Telemetry-driven routing eliminates manual configuration</span>
+
+<div class="grid grid-cols-2 gap-12 px-16">
+
+<div v-click>
+
+### Intelligent Routing
+
+<div class="mt-4">
 
 ```mermaid {scale: 0.65}
-graph LR
-    A[Flag Platform] -->|Auto-detect| B[Flag Evaluation]
-    B -->|Map to| C[Service Entity]
-    C -->|Send Event| D[Observability Platform]
-    
-    style A fill:#4a9eff
-    style D fill:#6f6
+graph TD
+  A[Flag Platform] -->|Telemetry| B[Detect Usage]
+  B -->|Map| C[checkout-service]
+  B -->|Map| D[payment-service]
+  C -->|Events| E[Observability]
+  D -->|Events| E
+  style A fill:#6C63FF,color:#fff,stroke:#222,stroke-width:2px
+  style B fill:#3A3A3A,color:#fff,stroke:#222,stroke-width:2px
+  style C fill:#FFD166,color:#222,stroke:#222,stroke-width:2px
+  style D fill:#FFD166,color:#222,stroke:#222,stroke-width:2px
+  style E fill:#43AA8B,color:#fff,stroke:#222,stroke-width:2px
 ```
+</div>
+
+</div>
+
+<div v-click="2">
+
+### Benefits
+
+<div class="mt-4 space-y-4 text-base">
+
+<div class="flex items-start gap-3">
+  <div class="i-carbon:checkmark text-green-400 text-xl mt-1 flex-shrink-0" />
+  <div>
+    <div class="font-semibold">Automatic discovery</div>
+    <div class="text-sm opacity-70">Detects where flags are evaluated</div>
+  </div>
+</div>
+
+<div class="flex items-start gap-3">
+  <div class="i-carbon:checkmark text-green-400 text-xl mt-1 flex-shrink-0" />
+  <div>
+    <div class="font-semibold">Smart routing</div>
+    <div class="text-sm opacity-70">Events only to affected services</div>
+  </div>
+</div>
+
+<div class="flex items-start gap-3">
+  <div class="i-carbon:checkmark text-green-400 text-xl mt-1 flex-shrink-0" />
+  <div>
+    <div class="font-semibold">Zero maintenance</div>
+    <div class="text-sm opacity-70">Stays current as code evolves</div>
+  </div>
+</div>
+
+<div class="flex items-start gap-3">
+  <div class="i-carbon:warning-alt text-amber-400 text-xl mt-1 flex-shrink-0" />
+  <div>
+    <div class="font-semibold">Correlation ≠ Causation</div>
+    <div class="text-sm opacity-70">Good indicator, but can't measure exact impact</div>
+  </div>
+</div>
+
+</div>
 
 </div>
 
 </div>
 
-<div v-click class="mt-4">
-
-### Still Missing
-
-<div class="grid grid-cols-2 gap-3 mt-2">
-<div class="border border-red-500 border-dashed p-3 rounded text-sm">
-<span class="text-red-400">❌ Per-request visibility</span>
-<div class="text-xs mt-1">Can't see which requests were affected</div>
+<div v-click="3" class="mt-6 text-center text-lg opacity-90">
+Solves the scaling problem, but we need <span class="text-blue-400 font-bold">request-level</span> observability
 </div>
-
-<div class="border border-red-500 border-dashed p-3 rounded text-sm">
-<span class="text-red-400">❌ Variant-level insights</span>
-<div class="text-xs mt-1">Can't compare performance across variants</div>
-</div>
-</div>
-
-</div>
-
-<div v-click class="mt-4 text-center opacity-70 text-sm">
-[IMAGE PLACEHOLDER: Automatic event mapping flowchart]
-</div>
-
-<!--
-Automatic mapping is better, but we need trace-level observability for the full picture.
--->
 
 ---
-layout: center
-class: text-center
+layout: default
+class: py-8
 ---
 
-# Stage 4: Trace-Level Observability 🎯
+# Level 4: Trace-Level Observability 🎯
 
-<div class="text-2xl mt-8 mb-8">
-The **Gold Standard**
-</div>
+<span>Feature flags as a first-class observability concept</span>
+
+<div class="grid grid-cols-2 gap-8">
+
+<div>
+
+### The Transformation
 
 <v-clicks>
 
-<div class="text-xl mb-4">
-🔍 See flag evaluations in **every trace**
+<div class="flex items-start gap-3 mb-3 mt-4">
+  <div class="i-carbon:view text-blue-400 text-xl mt-1" />
+  <div class="text-sm">
+    <div class="font-semibold">See flag evaluations in every trace</div>
+    <div class="opacity-70 mt-1">Every request shows which flags were evaluated</div>
+  </div>
 </div>
 
-<div class="text-xl mb-4">
-📊 Slice and dice by **flag** and **variant**
+<div class="flex items-start gap-3 mb-3">
+  <div class="i-carbon:filter text-purple-400 text-xl mt-1" />
+  <div class="text-sm">
+    <div class="font-semibold">Filter requests by flag presence</div>
+    <div class="opacity-70 mt-1">Isolate only requests that used a specific flag</div>
+  </div>
 </div>
 
-<div class="text-xl mb-4">
-⚡ **Instantly** correlate flags to request performance
+<div class="flex items-start gap-3 mb-3">
+  <div class="i-carbon:chart-line text-green-400 text-xl mt-1" />
+  <div class="text-sm">
+    <div class="font-semibold">Compare variants in real-time</div>
+    <div class="opacity-70 mt-1">See performance differences between control vs treatment</div>
+  </div>
 </div>
 
-<div class="text-xl mb-4">
-🎚️ Compare variants in **real-time**
+<div class="flex items-start gap-3">
+  <div class="i-carbon:flash text-amber-400 text-xl mt-1" />
+  <div class="text-sm">
+    <div class="font-semibold">Instant root cause identification</div>
+    <div class="opacity-70 mt-1">Immediately see which variant caused the issue</div>
+  </div>
 </div>
 
 </v-clicks>
 
-<div v-click class="mt-12 text-center opacity-70">
-[IMAGE PLACEHOLDER: Annotated screenshot showing trace with feature flag attributes highlighted]
 </div>
 
-<!--
-This is what we're building towards - flags as first-class citizens in observability.
--->
+<div v-click="5">
+
+<VariantComparisonChart />
+
+<div class="mt-3 space-y-1 text-xs">
+  <div class="opacity-70">
+    <span v-if="$clicks >= 5 && $clicks < 6">View 1: All traffic - flag impact barely noticeable (165-225ms)</span>
+    <span v-else-if="$clicks >= 6 && $clicks < 7">View 2: Flag traffic only - clear spike visible (1600-2000ms)</span>
+    <span v-else-if="$clicks >= 7">View 3: Split by variant - "on" variant shows 3200-3800ms!</span>
+    <span v-else>&nbsp;</span>
+  </div>
+</div>
+
+</div>
+
+</div>
+
+<div v-click="8" class="mt-6 p-4 bg-green-900/20 border border-green-500/30 rounded-lg">
+<div class="flex items-start gap-3">
+  <div class="i-carbon:checkmark-filled text-green-400 text-2xl mt-1" />
+  <div>
+    <div class="font-semibold text-green-300 mb-2">No More Guesswork</div>
+    <div class="text-sm opacity-90">
+      With trace-level data, you can <span class="font-bold">instantly see</span> that variant "on" is causing 2.5-4s response times 
+      while "control" maintains healthy 150-200ms performance. Root cause identified in seconds, not hours.
+    </div>
+  </div>
+</div>
+</div>
 
 ---
 layout: default
@@ -881,13 +1033,11 @@ With trace-level data, the root cause becomes immediately obvious.
 layout: center
 ---
 
-# Key Takeaway
+<div class="text-center text-3xl mt-12">
 
-<div class="text-3xl text-center mt-16 leading-relaxed">
+Trace-level observability makes
 
-Trace-level observability makes feature flags
-
-<span class="text-blue-400 font-bold">first-class citizens</span>
+feature flags a <span class="font-serif text-blue-400">first-class citizens</span>
 
 in your monitoring stack
 
