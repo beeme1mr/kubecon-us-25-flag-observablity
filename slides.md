@@ -533,9 +533,9 @@ layout: section
 <div class="mt-16 grid grid-cols-5 gap-4">
 
 <div
-  border="1.5 solid gray-600" rounded-lg overflow-hidden p-4 text-center
+  border="1.5 solid purple-200" rounded-lg overflow-hidden p-4 text-center
   class="animate-fade-in opacity-0"
-  style="animation-delay: 0.3s; animation-fill-mode: forwards; background: linear-gradient(135deg, rgba(51, 54, 58, 0.5), rgba(24, 26, 38, 0.5)); box-shadow: 0 0 20px rgba(85, 89, 95, 0.25);"
+  style="animation-delay: 0.1s; animation-fill-mode: forwards; background: linear-gradient(135deg, rgba(224, 224, 255, 0.15), rgba(203, 203, 255, 0.15)); box-shadow: 0 0 20px rgba(224, 224, 255, 0.2);"
 >
   <div class="text-3xl mb-2">🙈</div>
   <div class="font-bold mb-1">Level 0</div>
@@ -543,9 +543,9 @@ layout: section
 </div>
 
 <div
-  border="1.5 solid amber-600" rounded-lg overflow-hidden p-4 text-center
+  border="1.5 solid purple-300" rounded-lg overflow-hidden p-4 text-center
   class="animate-fade-in opacity-0"
-  style="animation-delay: 0.8s; animation-fill-mode: forwards; background: linear-gradient(135deg, rgba(217, 119, 6, 0.25), rgba(146, 64, 14, 0.25)); box-shadow: 0 0 20px rgba(252, 211, 77, 0.25);"
+  style="animation-delay: 0.25s; animation-fill-mode: forwards; background: linear-gradient(135deg, rgba(183, 185, 255, 0.2), rgba(161, 163, 255, 0.2)); box-shadow: 0 0 20px rgba(183, 185, 255, 0.25);"
 >
   <div class="text-3xl mb-2">📢</div>
   <div class="font-bold mb-1">Level 1</div>
@@ -553,9 +553,9 @@ layout: section
 </div>
 
 <div
-  border="1.5 solid blue-500" rounded-lg overflow-hidden p-4 text-center
+  border="1.5 solid purple-400" rounded-lg overflow-hidden p-4 text-center
   class="animate-fade-in opacity-0"
-  style="animation-delay: 1.3s; animation-fill-mode: forwards; background: linear-gradient(135deg, rgba(59, 130, 246, 0.25), rgba(29, 78, 216, 0.25)); box-shadow: 0 0 20px rgba(96, 165, 250, 0.25);"
+  style="animation-delay: 0.4s; animation-fill-mode: forwards; background: linear-gradient(135deg, rgba(161, 163, 255, 0.25), rgba(141, 141, 255, 0.25)); box-shadow: 0 0 20px rgba(161, 163, 255, 0.3);"
 >
   <div class="text-3xl mb-2">✍️</div>
   <div class="font-bold mb-1">Level 2</div>
@@ -565,7 +565,7 @@ layout: section
 <div
   border="1.5 solid purple-500" rounded-lg overflow-hidden p-4 text-center
   class="animate-fade-in opacity-0"
-  style="animation-delay: 1.8s; animation-fill-mode: forwards; background: linear-gradient(135deg, rgba(141, 141, 255, 0.32), rgba(93, 93, 255, 0.32)); box-shadow: 0 0 20px rgba(141, 141, 255, 0.35);"
+  style="animation-delay: 0.55s; animation-fill-mode: forwards; background: linear-gradient(135deg, rgba(141, 141, 255, 0.32), rgba(121, 121, 255, 0.32)); box-shadow: 0 0 20px rgba(141, 141, 255, 0.35);"
 >
   <div class="text-3xl mb-2">🤖</div>
   <div class="font-bold mb-1">Level 3</div>
@@ -573,9 +573,9 @@ layout: section
 </div>
 
 <div
-  border="1.5 solid green-500" rounded-lg overflow-hidden p-4 text-center
+  border="1.5 solid purple-600" rounded-lg overflow-hidden p-4 text-center
   class="animate-fade-in opacity-0"
-  style="animation-delay: 2.3s; animation-fill-mode: forwards; background: linear-gradient(135deg, rgba(34, 197, 94, 0.25), rgba(21, 128, 61, 0.25)); box-shadow: 0 0 20px rgba(34, 197, 94, 0.35);"
+  style="animation-delay: 0.7s; animation-fill-mode: forwards; background: linear-gradient(135deg, rgba(121, 121, 255, 0.38), rgba(93, 93, 255, 0.4)); box-shadow: 0 0 20px rgba(121, 121, 255, 0.4);"
 >
   <div class="text-3xl mb-2">🎯</div>
   <div class="font-bold mb-1">Level 4</div>
@@ -882,112 +882,73 @@ Solves the scaling problem, but we need <span class="text-blue-400 font-bold">re
 ---
 layout: default
 class: py-8
+clicks: 4
 ---
 
 # Level 4: Trace-Level Observability 🎯
 
 <span class="opacity-80">Feature flags as a first-class observability concept</span>
 
-<div class="grid grid-cols-2 gap-8 mt-6">
+<div class="grid grid-cols-2 gap-12 px-4">
 
-<div>
+<div v-click>
 
-<div
-  class="bg-gradient-card"
-  border="1.5 solid purple-light"
-  rounded-lg
-  px-5 py-4
-  style="box-shadow: 0 0 20px rgba(109, 118, 255, 0.25);"
->
+### Fine-Grained Insights
 
-<div flex items-center gap-3 mb-4>
-  <div
-    class="bg-gradient-purple w-10 h-10 rounded-lg flex items-center justify-center"
-    style="box-shadow: 0 2px 12px rgba(141,141,255,0.12);"
-  >
-    <div class="i-carbon:view text-purple-bright text-xl" />
-  </div>
-  <h3 class="text-lg font-semibold text-purple-bright">The Transformation</h3>
-</div>
+<div class="mt-4 space-y-4 text-base">
 
-<v-clicks>
-
-<div class="flex items-start gap-3 mb-3 px-3 py-2 bg-white/5 rounded">
-  <div class="i-carbon:view text-blue-400 text-lg mt-0.5 flex-shrink-0" />
-  <div class="text-sm">
-    <div class="font-semibold text-purple-light">See flag evaluations in every trace</div>
-    <div class="opacity-70 mt-1">Every request shows which flags were evaluated</div>
+<div class="flex items-start gap-3">
+  <div class="i-carbon:view text-blue-400 text-xl mt-1 flex-shrink-0" />
+  <div>
+    <div class="font-semibold">See flag evaluations</div>
+    <div class="text-sm opacity-70">Every trace shows which flags were evaluated</div>
   </div>
 </div>
 
-<div class="flex items-start gap-3 mb-3 px-3 py-2 bg-white/5 rounded">
-  <div class="i-carbon:filter text-purple-400 text-lg mt-0.5 flex-shrink-0" />
-  <div class="text-sm">
-    <div class="font-semibold text-purple-light">Filter requests by flag presence</div>
-    <div class="opacity-70 mt-1">Isolate only requests that used a specific flag</div>
+<div class="flex items-start gap-3">
+  <div class="i-carbon:filter text-purple-400 text-xl mt-1 flex-shrink-0" />
+  <div>
+    <div class="font-semibold">Filter by flag presence</div>
+    <div class="text-sm opacity-70">Isolate requests that used a specific flag</div>
   </div>
 </div>
 
-<div class="flex items-start gap-3 mb-3 px-3 py-2 bg-white/5 rounded">
-  <div class="i-carbon:chart-line text-green-400 text-lg mt-0.5 flex-shrink-0" />
-  <div class="text-sm">
-    <div class="font-semibold text-purple-light">Compare variants in real-time</div>
-    <div class="opacity-70 mt-1">See performance differences between control vs treatment</div>
+<div class="flex items-start gap-3">
+  <div class="i-carbon:chart-line text-green-400 text-xl mt-1 flex-shrink-0" />
+  <div>
+    <div class="font-semibold">Compare variants</div>
+    <div class="text-sm opacity-70">See performance differences in real-time</div>
   </div>
 </div>
 
-<div class="flex items-start gap-3 px-3 py-2 bg-white/5 rounded">
-  <div class="i-carbon:flash text-amber-400 text-lg mt-0.5 flex-shrink-0" />
-  <div class="text-sm">
-    <div class="font-semibold text-purple-light">Instant root cause identification</div>
-    <div class="opacity-70 mt-1">Immediately see which variant caused the issue</div>
+<div class="flex items-start gap-3">
+  <div class="i-carbon:flash text-amber-400 text-xl mt-1 flex-shrink-0" />
+  <div>
+    <div class="font-semibold">Instant root cause</div>
+    <div class="text-sm opacity-70">Immediately identify which variant caused issues</div>
   </div>
 </div>
 
-</v-clicks>
-
 </div>
 
 </div>
 
-<div v-click="5">
+<div v-click="2">
 
-<div
-  class="bg-gradient-card"
-  border="1.5 solid purple-light"
-  rounded-lg
-  px-4 py-4
-  style="box-shadow: 0 0 20px rgba(109, 118, 255, 0.25);"
->
 
 <VariantComparisonChart />
 
-<div class="mt-3 px-2 py-2 bg-purple-900/20 border border-purple-800/50 rounded text-xs" style="box-shadow: 0 0 10px rgba(141,141,255,0.15);">
-  <div class="text-purple-300">
-    <span v-if="$clicks >= 5 && $clicks < 6">📊 View 1: All traffic - flag impact barely noticeable (165-225ms)</span>
-    <span v-else-if="$clicks >= 6 && $clicks < 7">🔍 View 2: Flag traffic only - clear spike visible (1600-2000ms)</span>
-    <span v-else-if="$clicks >= 7">🎯 View 3: Split by variant - "on" variant shows 3200-3800ms!</span>
+<div class="mt-2 px-3 py-2 bg-purple-900/20 border border-purple-800/50 rounded text-xs" style="box-shadow: 0 0 10px rgba(141,141,255,0.15);">
+  <div class="text-purple-300 text-center">
+    <span v-if="$clicks >= 2 && $clicks < 3">📊 All traffic - flag impact barely noticeable (165-225ms)</span>
+    <span v-else-if="$clicks >= 3 && $clicks < 4">🔍 Flag traffic only - clear spike visible (1600-2000ms)</span>
+    <span v-else-if="$clicks >= 4">🎯 Split by variant - "on" variant shows 3200-3800ms! Root cause identified.</span>
     <span v-else>&nbsp;</span>
   </div>
 </div>
 
 </div>
 
-</div>
-
-</div>
-
-<div v-click="8" class="mt-6 p-4 bg-green-900/20 border border-green-800 rounded-lg" style="box-shadow: 0 0 15px rgba(34, 197, 94, 0.2);">
-<div class="flex items-start gap-3">
-  <div class="i-carbon:checkmark-filled text-green-400 text-2xl mt-1 flex-shrink-0" />
-  <div>
-    <div class="font-semibold text-green-300 mb-2">No More Guesswork</div>
-    <div class="text-sm opacity-90">
-      With trace-level data, you can <span class="font-bold">instantly see</span> that variant "on" is causing 2.5-4s response times
-      while "control" maintains healthy 150-200ms performance. Root cause identified in seconds, not hours.
-    </div>
-  </div>
-</div>
 </div>
 
 ---
@@ -1294,7 +1255,9 @@ layout: default
 
 <div>
 
-### The Concept
+### Concepts
+
+<div class="mt-4 text-base">
 
 <v-clicks>
 
@@ -1307,11 +1270,15 @@ layout: default
 
 </div>
 
+</div>
+
 <div v-click>
 
 ### Rollout Stages
 
-```mermaid {scale: 0.75}
+<div class="mt-4" />
+
+```mermaid {scale: 0.65}
 graph TD
     A[0% - Dark Launch] --> B[1% - Canary]
     B --> C[10% - Early Adopters]

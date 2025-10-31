@@ -11,13 +11,13 @@ let chart: Chart | null = null;
 
 const { $clicks } = useSlideContext();
 
-// Compute which view mode based on clicks (offset by 1 since chart appears at click 5)
+// Compute which view mode based on clicks
+// Chart appears at click 2, starts showing data at click 3
 const currentView = computed(() => {
-  const relativeClicks = $clicks.value - 4; // Chart appears at click 5
-  if (relativeClicks >= 3) return 2; // Split by variant (clicks 8+)
-  if (relativeClicks >= 2) return 1; // Flag traffic only (clicks 7)
-  if (relativeClicks >= 1) return 0; // All traffic (clicks 6)
-  return -1; // Not yet visible
+  if ($clicks.value >= 4) return 2; // Split by variant (click 5+)
+  if ($clicks.value >= 3) return 1; // Flag traffic only (click 4)
+  if ($clicks.value >= 2) return 0; // All traffic (click 3)
+  return -1; // Not yet visible (before click 3)
 });
 
 // Generate hardcoded data for consistent demo
@@ -65,10 +65,14 @@ function generateData() {
   };
 }
 
-onSlideEnter(() => {
-  const data = generateData();
+let stopWatch: (() => void) | null = null;
 
-  if (chartCanvas.value) {
+onSlideEnter(() => {
+  // Wait for DOM to be ready before creating chart
+  setTimeout(() => {
+    const data = generateData();
+
+    if (chartCanvas.value) {
     chart = new Chart(chartCanvas.value, {
       type: 'line',
       data: {
@@ -82,7 +86,7 @@ onSlideEnter(() => {
             tension: 0.4,
             fill: true,
             borderWidth: 2,
-            hidden: false
+            hidden: true
           },
           {
             label: 'With Flag',
@@ -123,10 +127,13 @@ onSlideEnter(() => {
           legend: {
             position: 'bottom',
             labels: {
+              color: 'rgba(255, 255, 255, 0.8)',
               filter: (item) => {
                 const index = item.datasetIndex ?? 0;
-                if (currentView.value === 0) return index === 0;
-                if (currentView.value === 1) return index === 1;
+                const view = currentView.value;
+                if (view === -1) return false; // Hide all before click 3
+                if (view === 0) return index === 0;
+                if (view === 1) return index === 1;
                 return index >= 2;
               }
             }
@@ -144,7 +151,7 @@ onSlideEnter(() => {
                   display: true,
                   content: '🚩 Flag Toggled',
                   position: 'start',
-                  yAdjust: -130,
+                  yAdjust: -180,
                   backgroundColor: 'rgba(168, 85, 247, 0.9)',
                   color: 'white',
                   font: {
@@ -165,6 +172,7 @@ onSlideEnter(() => {
             beginAtZero: true,
             max: 300,
             ticks: {
+              color: 'rgba(255, 255, 255, 0.6)',
               callback: (value) => `${value}ms`
             }
           }
@@ -178,11 +186,14 @@ onSlideEnter(() => {
 
     // Update visibility based on current view
     updateVisibility();
-  }
+    }
+  }, 100);
 
-  // Watch for view changes
-  watch(currentView, () => {
-    updateVisibility();
+  // Set up watch outside setTimeout - only once per slide enter
+  stopWatch = watch(currentView, () => {
+    if (chart) {
+      updateVisibility();
+    }
   });
 });
 
@@ -222,6 +233,11 @@ function updateVisibility() {
 onSlideLeave(() => {
   if (chart) {
     chart.destroy();
+    chart = null;
+  }
+  if (stopWatch) {
+    stopWatch();
+    stopWatch = null;
   }
 });
 </script>
@@ -229,7 +245,7 @@ onSlideLeave(() => {
 <template>
   <div>
     <div class="text-sm font-semibold mb-2 opacity-80">Response Time</div>
-    <div style="width: 400px; height: 200px;">
+    <div style="width: 100%; height: 250px;">
       <canvas ref="chartCanvas"></canvas>
     </div>
   </div>

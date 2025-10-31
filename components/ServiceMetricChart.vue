@@ -82,13 +82,15 @@ const metricConfig = computed(() => {
 });
 
 onSlideEnter(() => {
-  const labels = Array.from({ length: props.maxDataPoints }, (_, i) => `T-${props.maxDataPoints - i}s`);
-  const data = Array.from({ length: props.maxDataPoints }, () => {
-    const [min, max] = metricConfig.value.normalRange;
-    return min + Math.random() * (max - min);
-  });
+  // Wait for DOM to be ready before creating chart
+  setTimeout(() => {
+    const labels = Array.from({ length: props.maxDataPoints }, (_, i) => `T-${props.maxDataPoints - i}s`);
+    const data = Array.from({ length: props.maxDataPoints }, () => {
+      const [min, max] = metricConfig.value.normalRange;
+      return min + Math.random() * (max - min);
+    });
 
-  if (chartCanvas.value) {
+    if (chartCanvas.value) {
     chart = new Chart(chartCanvas.value, {
       type: props.type as any,
       data: {
@@ -215,6 +217,7 @@ onSlideEnter(() => {
       }
     }
   });
+  }, 100);
 });
 
 onSlideLeave(() => {
