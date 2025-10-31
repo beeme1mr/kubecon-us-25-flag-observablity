@@ -104,7 +104,7 @@ class: px-6 py-4
     timestamp="Oct 15, 2025, 2:35 PM"
   />
   
-  <div v-click="7" class="mt-3 p-2 bg-red-900/20 border border-red-500/30 rounded text-xs">
+  <div v-click="7" class="mt-3 p-3 bg-red-900/20 border border-red-800 rounded-lg text-xs" style="box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);">
     <div class="font-bold text-red-400 mb-1">⚠️ The Missing Context</div>
     <div class="opacity-80">Feature flag changes are <span class="font-bold">invisible</span> to traditional monitoring</div>
   </div>
@@ -123,16 +123,16 @@ layout: center
 
 <div class="text-center text-3xl mt-12">
 
-Feature flags are <span class="font-serif text-red-400">hidden</span> from observability tools
+Feature flags are <span class="text-red-400">hidden</span> from observability tools
 
 <v-click>
 
-making it <span class="font-serif text-orange-400">difficult</span> to pinpoint changes
+making it <span class="text-orange-400">difficult</span> to pinpoint changes
 
 </v-click>
 <v-click>
 
-as the <span class="font-serif text-blue-400">root cause</span> of incidents
+as the <span class="text-blue-400">root cause</span> of incidents
 
 </v-click>
 
@@ -158,7 +158,7 @@ hide: true
 <div>
 <v-clicks>
 
-<div border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm p-4 mb-3>
+<div class="bg-gradient-card" border="1.5 solid purple-light" rounded-lg overflow-hidden p-4 mb-3 style="box-shadow: 0 8px 32px 0 rgba(60,66,110,0.38), 0 0 0 2px rgba(141,141,255,0.08);">
   <div flex items-center mb-2>
     <div i-carbon:settings-adjust text-blue-300 text-lg mr-2 />
     <span font-semibold>Toggle Control</span>
@@ -166,7 +166,7 @@ hide: true
   <div text-sm opacity-70>Turn features on/off without deploying code</div>
 </div>
 
-<div border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm p-4 mb-3>
+<div class="bg-gradient-card" border="1.5 solid purple-light" rounded-lg overflow-hidden p-4 mb-3 style="box-shadow: 0 8px 32px 0 rgba(60,66,110,0.38), 0 0 0 2px rgba(141,141,255,0.08);">
   <div flex items-center mb-2>
     <div i-carbon:rocket text-green-300 text-lg mr-2 />
     <span font-semibold>Progressive Rollouts</span>
@@ -174,7 +174,7 @@ hide: true
   <div text-sm opacity-70>Gradual releases and canary deployments</div>
 </div>
 
-<div border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm p-4 mb-3>
+<div class="bg-gradient-card" border="1.5 solid purple-light" rounded-lg overflow-hidden p-4 mb-3 style="box-shadow: 0 8px 32px 0 rgba(60,66,110,0.38), 0 0 0 2px rgba(141,141,255,0.08);">
   <div flex items-center mb-2>
     <div i-carbon:chart-multitype text-purple-300 text-lg mr-2 />
     <span font-semibold>A/B Testing</span>
@@ -182,7 +182,7 @@ hide: true
   <div text-sm opacity-70>Experiments and variant testing</div>
 </div>
 
-<div border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm p-4 mb-3>
+<div class="bg-gradient-card" border="1.5 solid purple-light" rounded-lg overflow-hidden p-4 mb-3 style="box-shadow: 0 8px 32px 0 rgba(60,66,110,0.38), 0 0 0 2px rgba(141,141,255,0.08);">
   <div flex items-center mb-2>
     <div i-carbon:user-access text-amber-300 text-lg mr-2 />
     <span font-semibold>Access Control</span>
@@ -195,7 +195,7 @@ hide: true
 
 <div v-click="5">
 
-<div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-2">
+<div class="bg-gradient-card border border-purple-light rounded-lg p-2" style="box-shadow: 0 0 20px rgba(109, 118, 255, 0.25);">
 
 ```typescript
 const client = OpenFeature.getClient();
@@ -232,8 +232,8 @@ class: py-10
 
 <div grid grid-cols-2 gap-6>
 
-<div v-click border="2 solid blue-500/30" rounded-lg overflow-hidden bg="blue-900/20" backdrop-blur-sm>
-  <div flex items-center bg="blue-800/30" backdrop-blur px-4 py-3>
+<div v-click border="1.5 solid blue-500" rounded-lg overflow-hidden bg="blue-900/20" backdrop-blur-sm style="box-shadow: 0 8px 32px 0 rgba(60,66,110,0.38);">
+  <div flex items-center px-4 py-3 style="background: linear-gradient(135deg, rgba(30, 64, 175, 0.4), rgba(29, 78, 216, 0.5));">
     <div i-carbon:view text-blue-300 text-xl mr-3 />
     <h3 class="text-blue-400 font-semibold text-lg">What We See</h3>
   </div>
@@ -262,8 +262,8 @@ class: py-10
   </div>
 </div>
 
-<div v-click border="2 solid red-500/30" rounded-lg overflow-hidden bg="red-900/20" backdrop-blur-sm>
-  <div flex items-center bg="red-800/30" backdrop-blur px-4 py-3>
+<div v-click border="1.5 solid red-500" rounded-lg overflow-hidden bg="red-900/20" backdrop-blur-sm style="box-shadow: 0 8px 32px 0 rgba(60,66,110,0.38);">
+  <div flex items-center px-4 py-3 style="background: linear-gradient(135deg, rgba(127, 29, 29, 0.4), rgba(153, 27, 27, 0.5));">
     <div i-carbon:view-off text-red-300 text-xl mr-3 />
     <h3 class="text-red-400 font-semibold text-lg">What's Hidden</h3>
   </div>
@@ -320,14 +320,17 @@ class: py-10
 
 ### Astronomy Shop
 
+<div class="mt-2 text-sm opacity-80">
+
 - Full **microservices e-commerce** platform
 - 10+ services, multiple languages
 - Production-grade observability stack
 - Uses **OpenFeature** for feature flagging
 
 </div>
+</div>
 
-<div class="mt-4 p-3 bg-purple-900/20 border border-purple-500/30 rounded">
+<div class="mt-4 p-3 bg-purple-900/20 border border-purple-800 rounded-lg" style="box-shadow: 0 0 20px rgba(141,141,255,0.25);">
 <div class="text-sm font-semibold text-purple-300 mb-2">🎯 Perfect Test Bed</div>
 <div class="text-xs opacity-80">
 Includes flags that deliberately enable problems to demonstrate observability challenges
@@ -344,7 +347,7 @@ Includes flags that deliberately enable problems to demonstrate observability ch
 
 <div class="mt-3 space-y-2">
 
-<div class="p-3 bg-red-900/20 border border-red-500/30 rounded">
+<div class="p-3 bg-red-900/20 border border-red-800 rounded-lg" style="box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);">
 <div class="font-semibold text-sm mb-1 flex items-center">
 <div i-carbon:warning-alt text-red-400 mr-2 />
 <code class="text-xs">recommendationServiceCacheFailure</code>
@@ -352,7 +355,7 @@ Includes flags that deliberately enable problems to demonstrate observability ch
 <div class="text-xs opacity-70">Memory leak → 1.4x exponential growth → OOM crashes</div>
 </div>
 
-<div class="p-3 bg-orange-900/20 border border-orange-500/30 rounded">
+<div class="p-3 bg-orange-900/20 border border-orange-800 rounded-lg" style="box-shadow: 0 0 15px rgba(249, 115, 22, 0.2);">
 <div class="font-semibold text-sm mb-1 flex items-center">
 <div i-carbon:warning-alt text-orange-400 mr-2 />
 <code class="text-xs">paymentServiceUnreachable</code>
@@ -360,7 +363,7 @@ Includes flags that deliberately enable problems to demonstrate observability ch
 <div class="text-xs opacity-70">Invalid endpoint → all payment requests fail</div>
 </div>
 
-<div class="p-3 bg-amber-900/20 border border-amber-500/30 rounded">
+<div class="p-3 bg-amber-900/20 border border-amber-800 rounded-lg" style="box-shadow: 0 0 15px rgba(251, 146, 60, 0.2);">
 <div class="font-semibold text-sm mb-1 flex items-center">
 <div i-carbon:warning-alt text-amber-400 mr-2 />
 <code class="text-xs">imageSlowLoad</code>
@@ -388,62 +391,52 @@ class: py-10
 <span>Observability shows the <span class="text-red-400">symptoms</span>, but hides the <span class="text-purple-400">diagnosis</span></span>
 
 <div class="grid grid-cols-2 gap-6">
-
-<div border="2 solid red-500/30" rounded-lg overflow-hidden bg="red-900/20" backdrop-blur-sm>
-  <div flex items-center bg="red-800/30" backdrop-blur px-4 py-3>
+<div v-click border="1.5 solid red-500" rounded-lg overflow-hidden bg="red-900/20" backdrop-blur-sm style="box-shadow: 0 8px 32px 0 rgba(60,66,110,0.38);">
+  <div flex items-center px-4 py-3 style="background: linear-gradient(135deg, rgba(127, 29, 29, 0.4), rgba(153, 27, 27, 0.5));">
     <div i-carbon:chart-line text-red-300 text-xl mr-3 />
     <h3 class="text-red-300 font-semibold">What Your Dashboard Shows</h3>
   </div>
   <div px-4 py-4>
-    
-<div v-click class="space-y-3 text-sm">
 
-```yaml
-recommendation_service:
-  memory: 2.5GB ⬆️ (was 150MB)
-  cpu: 85% ⬆️ (was 12%)
-  errors: 23% ⬆️ (was 0.1%)
-  p95_latency: 3200ms ⬆️ (was 145ms)
-  
-pod_restarts: 12 in last 10 min
-```
-
-<div class="p-2 bg-red-900/30 border border-red-500/40 rounded text-xs">
-🚨 <span class="font-bold">Clear Impact</span>: Something is broken<br/>
-❓ <span class="font-bold">Unknown Cause</span>: No code changes, no deploys...
-</div>
-
-</div>
-
+  <div class="space-y-3">
+    <div class="border border-red-500/30 rounded-lg overflow-hidden" style="box-shadow: 0 4px 20px rgba(239, 68, 68, 0.15);">
+      <img src="/response-time-spike.png" class="w-full" alt="Response time spike chart" />
+    </div>
+    <div class="p-2 bg-red-900/30 border border-red-800 rounded-lg text-xs" style="box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);">
+      <div class="text-xs space-y-1">
+        <div>🚨 Clear Impact: Response time spiked from 145ms to 600ms!</div>
+        <div>❓ Unknown Cause: No code changes, no deploys...</div>
+      </div>
+    </div>
+  </div>
   </div>
 </div>
 
-<div border="2 solid purple-500/30" rounded-lg overflow-hidden bg="purple-900/20" backdrop-blur-sm>
-  <div flex items-center bg="purple-800/30" backdrop-blur px-4 py-3>
+<div v-click border="1.5 solid purple-500" rounded-lg overflow-hidden bg="purple-900/20" backdrop-blur-sm style="box-shadow: 0 8px 32px 0 rgba(60,66,110,0.38);">
+  <div flex items-center px-4 py-3 style="background: linear-gradient(135deg, rgba(141, 141, 255, 0.32), rgba(183, 185, 255, 0.18));">
     <div i-carbon:flag text-purple-300 text-xl mr-3 />
     <h3 class="text-purple-300 font-semibold">What's Actually Happening</h3>
   </div>
   <div px-4 py-4>
-    
-<div v-click class="space-y-3">
 
-<div class="text-sm font-mono">
-<div class="opacity-70 mb-2">Flag evaluation:</div>
+<div class="space-y-3">
 
-```typescript
-recommendationServiceCacheFailure
-  → variant: "on"
-  → timestamp: 10:03 AM
-```
+<FlagChangeLog
+  flag-name="recommendationServiceCacheCompression"
+  user-name="Sarah Chen"
+  user-email="sarah.chen@acme.com"
+  timestamp="Oct 15, 2025, 10:03 AM"
+  old-value="off"
+  new-value="on"
+  change-reason="Testing new cache implementation in production"
+/>
 
-</div>
-
-<div class="p-3 bg-purple-900/30 border border-purple-500/40 rounded">
+<div class="mt-3 p-3 bg-purple-900/30 border border-purple-800 rounded-lg" style="box-shadow: 0 0 15px rgba(141,141,255,0.2);">
 <div class="text-xs font-semibold mb-2 text-purple-300">The Hidden Truth</div>
 <div class="text-xs space-y-1">
 <div>✅ Quick fix: Toggle flag off → problem gone</div>
 <div>⏱️ Gives time to debug properly</div>
-<div>🎯 But you don't know this is the root cause</div>
+<div>🎯 But monitoring tools can't see this connection</div>
 </div>
 </div>
 
@@ -454,10 +447,10 @@ recommendationServiceCacheFailure
 
 </div>
 
-<div v-click class="mt-6 p-4 bg-amber-900/20 border border-amber-500/30 rounded">
+<div v-click class="mt-6 p-4 bg-amber-900/20 border border-amber-800 rounded-lg" style="box-shadow: 0 0 15px rgba(251, 146, 60, 0.2);">
 <div class="text-center">
 <div class="text-lg mb-2">
-<span class="text-amber-300 font-bold">The Mitigation Problem:</span> 
+<span class="text-amber-300 font-bold">The Mitigation Problem:</span>
 </div>
 <div class="text-sm opacity-90">
 Hours spent restarting pods, rolling back code, and debugging — when a <span class="font-bold text-green-400">30-second flag toggle</span> would have stopped the bleeding
@@ -482,9 +475,9 @@ class: py-10
 
 <div grid grid-cols-3 gap-6>
 
-<div v-click border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm h-full>
-  <div flex items-center justify-center bg="white/10" backdrop-blur px-4 py-6>
-    <div i-carbon:time text-6xl text-red-300 />
+<div v-click class="bg-gradient-card" border="1.5 solid purple-light" rounded-lg overflow-hidden h-full style="box-shadow: 0 8px 32px 0 rgba(60,66,110,0.38), 0 0 0 2px rgba(141,141,255,0.08);">
+  <div flex items-center justify-center class="bg-gradient-purple" px-4 py-6>
+    <div i-carbon:time text-6xl text-red-300 style="filter: drop-shadow(0 0 8px rgba(248,113,113,0.6));" />
   </div>
   <div px-4 py-4 text-center>
     <div text-xl font-bold mb-2>Slower Recovery</div>
@@ -492,9 +485,9 @@ class: py-10
   </div>
 </div>
 
-<div v-click border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm h-full>
-  <div flex items-center justify-center bg="white/10" backdrop-blur px-4 py-6>
-    <div i-carbon:search text-6xl text-amber-300 />
+<div v-click class="bg-gradient-card" border="1.5 solid purple-light" rounded-lg overflow-hidden h-full style="box-shadow: 0 8px 32px 0 rgba(60,66,110,0.38), 0 0 0 2px rgba(141,141,255,0.08);">
+  <div flex items-center justify-center class="bg-gradient-purple" px-4 py-6>
+    <div i-carbon:search text-6xl text-amber-300 style="filter: drop-shadow(0 0 8px rgba(252,211,77,0.6));" />
   </div>
   <div px-4 py-4 text-center>
     <div text-xl font-bold mb-2>Wrong Direction</div>
@@ -502,9 +495,9 @@ class: py-10
   </div>
 </div>
 
-<div v-click border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm h-full>
-  <div flex items-center justify-center bg="white/10" backdrop-blur px-4 py-6>
-    <div i-carbon:fire text-6xl text-orange-300 />
+<div v-click class="bg-gradient-card" border="1.5 solid purple-light" rounded-lg overflow-hidden h-full style="box-shadow: 0 8px 32px 0 rgba(60,66,110,0.38), 0 0 0 2px rgba(141,141,255,0.08);">
+  <div flex items-center justify-center class="bg-gradient-purple" px-4 py-6>
+    <div i-carbon:fire text-6xl text-orange-300 style="filter: drop-shadow(0 0 8px rgba(253,186,116,0.6));" />
   </div>
   <div px-4 py-4 text-center>
     <div text-xl font-bold mb-2>Escalation</div>
@@ -516,11 +509,12 @@ class: py-10
 
 <div v-click mt-6 flex justify-center>
   <div
-    border="2 solid purple-500/30" bg="purple-900/20" backdrop-blur-sm
+    class="bg-gradient-purple" border="1.5 solid purple-bright"
     rounded-lg px-6 py-3 flex items-center gap-3
+    style="box-shadow: 0 0 25px rgba(109, 118, 255, 0.35);"
   >
-    <div i-carbon:idea text-purple-300 text-2xl />
-    <span text-lg class="font-serif">We need feature flags as <span class="text-purple-400 font-bold">first-class concept</span> in observability</span>
+    <div i-carbon:idea text-purple-bright text-2xl />
+    <span text-lg class="text-purple-bright">We need feature flags as <span class="font-bold">first-class concept</span> in observability</span>
   </div>
 </div>
 
@@ -538,50 +532,50 @@ layout: section
 
 <div class="mt-16 grid grid-cols-5 gap-4">
 
-<div 
-  border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm p-4 text-center
+<div
+  border="1.5 solid gray-600" rounded-lg overflow-hidden p-4 text-center
   class="animate-fade-in opacity-0"
-  style="animation-delay: 0.3s; animation-fill-mode: forwards;"
+  style="animation-delay: 0.3s; animation-fill-mode: forwards; background: linear-gradient(135deg, rgba(51, 54, 58, 0.5), rgba(24, 26, 38, 0.5)); box-shadow: 0 0 20px rgba(85, 89, 95, 0.25);"
 >
   <div class="text-3xl mb-2">🙈</div>
   <div class="font-bold mb-1">Level 0</div>
   <div class="text-sm opacity-70">Flying Blind</div>
 </div>
 
-<div 
-  border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm p-4 text-center
+<div
+  border="1.5 solid amber-600" rounded-lg overflow-hidden p-4 text-center
   class="animate-fade-in opacity-0"
-  style="animation-delay: 0.8s; animation-fill-mode: forwards;"
+  style="animation-delay: 0.8s; animation-fill-mode: forwards; background: linear-gradient(135deg, rgba(217, 119, 6, 0.25), rgba(146, 64, 14, 0.25)); box-shadow: 0 0 20px rgba(252, 211, 77, 0.25);"
 >
   <div class="text-3xl mb-2">📢</div>
   <div class="font-bold mb-1">Level 1</div>
   <div class="text-sm opacity-70">Broadcast Blast</div>
 </div>
 
-<div 
-  border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm p-4 text-center
+<div
+  border="1.5 solid blue-500" rounded-lg overflow-hidden p-4 text-center
   class="animate-fade-in opacity-0"
-  style="animation-delay: 1.3s; animation-fill-mode: forwards;"
+  style="animation-delay: 1.3s; animation-fill-mode: forwards; background: linear-gradient(135deg, rgba(59, 130, 246, 0.25), rgba(29, 78, 216, 0.25)); box-shadow: 0 0 20px rgba(96, 165, 250, 0.25);"
 >
   <div class="text-3xl mb-2">✍️</div>
   <div class="font-bold mb-1">Level 2</div>
   <div class="text-sm opacity-70">Manual Events</div>
 </div>
 
-<div 
-  border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm p-4 text-center
+<div
+  border="1.5 solid purple-500" rounded-lg overflow-hidden p-4 text-center
   class="animate-fade-in opacity-0"
-  style="animation-delay: 1.8s; animation-fill-mode: forwards;"
+  style="animation-delay: 1.8s; animation-fill-mode: forwards; background: linear-gradient(135deg, rgba(141, 141, 255, 0.32), rgba(93, 93, 255, 0.32)); box-shadow: 0 0 20px rgba(141, 141, 255, 0.35);"
 >
   <div class="text-3xl mb-2">🤖</div>
   <div class="font-bold mb-1">Level 3</div>
   <div class="text-sm opacity-70">Auto Mapping</div>
 </div>
 
-<div 
-  border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm p-4 text-center
+<div
+  border="1.5 solid green-500" rounded-lg overflow-hidden p-4 text-center
   class="animate-fade-in opacity-0"
-  style="animation-delay: 2.3s; animation-fill-mode: forwards;"
+  style="animation-delay: 2.3s; animation-fill-mode: forwards; background: linear-gradient(135deg, rgba(34, 197, 94, 0.25), rgba(21, 128, 61, 0.25)); box-shadow: 0 0 20px rgba(34, 197, 94, 0.35);"
 >
   <div class="text-3xl mb-2">🎯</div>
   <div class="font-bold mb-1">Level 4</div>
@@ -627,7 +621,7 @@ class: py-10
 
 ### What You See
 
-<div class="p-4 mt-4 bg-red-900/20 border border-red-500/30 rounded-lg text-sm">
+<div class="p-4 mt-4 bg-red-900/20 border border-red-800 rounded-lg text-sm" style="box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);">
 <div class="font-semibold text-red-400 mb-2">🚨 Failure rate spiking!</div>
 <div class="opacity-80">But what changed? No deployments, no code changes...</div>
 <div class="mt-2 italic opacity-70">Time to check logs, metrics, Slack, coffee machine...</div>
@@ -640,7 +634,7 @@ class: py-10
 <div v-click>
 
 <ServiceMetricChart 
-  service-name="checkout-service"
+  service-name="Checkout Service"
   metric="failure-rate"
   :show-annotation="false"
   :spike-click="1"
@@ -649,7 +643,7 @@ class: py-10
   :width="400"
 />
 
-<div v-click="3" class="mt-3 p-3 bg-amber-900/20 border border-amber-500/30 rounded text-sm">
+<div v-click="3" class="mt-3 p-3 bg-amber-900/20 border border-amber-800 rounded-lg text-sm" style="box-shadow: 0 0 15px rgba(251, 146, 60, 0.2);">
 <div class="text-amber-300 font-semibold mb-1">⚠️ The Reality</div>
 <div class="opacity-80">A feature flag was toggled 30 seconds ago, but you have no way to know that.</div>
 </div>
@@ -670,7 +664,7 @@ class: py-8
 
 <div>
 <ServiceMetricChart 
-  service-name="checkout-service"
+  service-name="Checkout service"
   metric="failure-rate"
   :show-annotation="true"
   :annotation-click="1"
@@ -684,7 +678,7 @@ class: py-8
 
 <div>
 <ServiceMetricChart 
-  service-name="payment-service"
+  service-name="Payment service"
   metric="failure-rate"
   :show-annotation="true"
   :annotation-click="1"
@@ -698,7 +692,7 @@ class: py-8
 
 <div>
 <ServiceMetricChart 
-  service-name="recommendation-service"
+  service-name="Recommendation service"
   metric="failure-rate"
   :show-annotation="true"
   :annotation-click="1"
@@ -712,13 +706,13 @@ class: py-8
 
 </div>
 
-<div v-click="2" class="mt-6 p-4 bg-red-900/20 border border-red-500/30 rounded-lg">
+<div v-click="2" class="mt-6 p-4 bg-red-900/20 border border-red-800 rounded-lg" style="box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);">
 <div class="flex items-start gap-3">
   <div class="i-carbon:warning-alt text-red-400 text-2xl mt-1" />
   <div>
     <div class="font-semibold text-red-300 mb-2">The Red Herring Problem</div>
     <div class="text-sm opacity-90">
-      When you manually configure events, you might send them to services that <span class="font-bold">don't use the flag</span>. 
+      When you manually configure events, you might send them to services that <span class="font-bold">don't use the flag</span>.
       This creates noise during incidents and can send investigations in the wrong direction.
     </div>
     <div class="text-sm mt-2 italic opacity-75">
@@ -787,14 +781,14 @@ class: py-8
 
 </div>
 
-<div v-click="2" class="mt-6 p-4 bg-amber-900/20 border border-amber-500/30 rounded-lg">
+<div v-click="2" class="mt-6 p-4 bg-amber-900/20 border border-amber-800 rounded-lg" style="box-shadow: 0 0 15px rgba(251, 146, 60, 0.2);">
 <div class="flex items-start gap-3">
   <div class="i-carbon:warning-alt text-amber-400 text-2xl mt-1" />
   <div>
     <div class="font-semibold text-amber-300 mb-2">The Manual Mapping Problem</div>
     <div class="text-sm opacity-90">
-      You can <span class="font-bold">manually configure</span> which services receive flag change events, but this requires maintaining a mapping. 
-      As your system evolves, these mappings become <span class="font-bold">outdated</span> — events might go to services that no longer use the flag, 
+      You can <span class="font-bold">manually configure</span> which services receive flag change events, but this requires maintaining a mapping.
+      As your system evolves, these mappings become <span class="font-bold">outdated</span> — events might go to services that no longer use the flag,
       or miss new services that started using it.
     </div>
     <div class="text-sm mt-2 italic opacity-75">
@@ -827,11 +821,11 @@ graph TD
   B -->|Map| D[payment-service]
   C -->|Events| E[Observability]
   D -->|Events| E
-  style A fill:#6C63FF,color:#fff,stroke:#222,stroke-width:2px
-  style B fill:#3A3A3A,color:#fff,stroke:#222,stroke-width:2px
-  style C fill:#FFD166,color:#222,stroke:#222,stroke-width:2px
-  style D fill:#FFD166,color:#222,stroke:#222,stroke-width:2px
-  style E fill:#43AA8B,color:#fff,stroke:#222,stroke-width:2px
+  style A fill:#8D8DFF,color:#fff,stroke:#5D5DFF,stroke-width:2px
+  style B fill:#55595F,color:#fff,stroke:#707D86,stroke-width:2px
+  style C fill:#ABABFF,color:#222,stroke:#8D8DFF,stroke-width:2px
+  style D fill:#ABABFF,color:#222,stroke:#8D8DFF,stroke-width:2px
+  style E fill:#6B7DFF,color:#fff,stroke:#5D5DFF,stroke-width:2px
 ```
 </div>
 
@@ -892,44 +886,60 @@ class: py-8
 
 # Level 4: Trace-Level Observability 🎯
 
-<span>Feature flags as a first-class observability concept</span>
+<span class="opacity-80">Feature flags as a first-class observability concept</span>
 
-<div class="grid grid-cols-2 gap-8">
+<div class="grid grid-cols-2 gap-8 mt-6">
 
 <div>
 
-### The Transformation
+<div
+  class="bg-gradient-card"
+  border="1.5 solid purple-light"
+  rounded-lg
+  px-5 py-4
+  style="box-shadow: 0 0 20px rgba(109, 118, 255, 0.25);"
+>
+
+<div flex items-center gap-3 mb-4>
+  <div
+    class="bg-gradient-purple w-10 h-10 rounded-lg flex items-center justify-center"
+    style="box-shadow: 0 2px 12px rgba(141,141,255,0.12);"
+  >
+    <div class="i-carbon:view text-purple-bright text-xl" />
+  </div>
+  <h3 class="text-lg font-semibold text-purple-bright">The Transformation</h3>
+</div>
 
 <v-clicks>
 
-<div class="flex items-start gap-3 mb-3 mt-4">
-  <div class="i-carbon:view text-blue-400 text-xl mt-1" />
+<div class="flex items-start gap-3 mb-3 px-3 py-2 bg-white/5 rounded">
+  <div class="i-carbon:view text-blue-400 text-lg mt-0.5 flex-shrink-0" />
   <div class="text-sm">
-    <div class="font-semibold">See flag evaluations in every trace</div>
+    <div class="font-semibold text-purple-light">See flag evaluations in every trace</div>
     <div class="opacity-70 mt-1">Every request shows which flags were evaluated</div>
   </div>
 </div>
 
-<div class="flex items-start gap-3 mb-3">
-  <div class="i-carbon:filter text-purple-400 text-xl mt-1" />
+<div class="flex items-start gap-3 mb-3 px-3 py-2 bg-white/5 rounded">
+  <div class="i-carbon:filter text-purple-400 text-lg mt-0.5 flex-shrink-0" />
   <div class="text-sm">
-    <div class="font-semibold">Filter requests by flag presence</div>
+    <div class="font-semibold text-purple-light">Filter requests by flag presence</div>
     <div class="opacity-70 mt-1">Isolate only requests that used a specific flag</div>
   </div>
 </div>
 
-<div class="flex items-start gap-3 mb-3">
-  <div class="i-carbon:chart-line text-green-400 text-xl mt-1" />
+<div class="flex items-start gap-3 mb-3 px-3 py-2 bg-white/5 rounded">
+  <div class="i-carbon:chart-line text-green-400 text-lg mt-0.5 flex-shrink-0" />
   <div class="text-sm">
-    <div class="font-semibold">Compare variants in real-time</div>
+    <div class="font-semibold text-purple-light">Compare variants in real-time</div>
     <div class="opacity-70 mt-1">See performance differences between control vs treatment</div>
   </div>
 </div>
 
-<div class="flex items-start gap-3">
-  <div class="i-carbon:flash text-amber-400 text-xl mt-1" />
+<div class="flex items-start gap-3 px-3 py-2 bg-white/5 rounded">
+  <div class="i-carbon:flash text-amber-400 text-lg mt-0.5 flex-shrink-0" />
   <div class="text-sm">
-    <div class="font-semibold">Instant root cause identification</div>
+    <div class="font-semibold text-purple-light">Instant root cause identification</div>
     <div class="opacity-70 mt-1">Immediately see which variant caused the issue</div>
   </div>
 </div>
@@ -938,15 +948,25 @@ class: py-8
 
 </div>
 
+</div>
+
 <div v-click="5">
+
+<div
+  class="bg-gradient-card"
+  border="1.5 solid purple-light"
+  rounded-lg
+  px-4 py-4
+  style="box-shadow: 0 0 20px rgba(109, 118, 255, 0.25);"
+>
 
 <VariantComparisonChart />
 
-<div class="mt-3 space-y-1 text-xs">
-  <div class="opacity-70">
-    <span v-if="$clicks >= 5 && $clicks < 6">View 1: All traffic - flag impact barely noticeable (165-225ms)</span>
-    <span v-else-if="$clicks >= 6 && $clicks < 7">View 2: Flag traffic only - clear spike visible (1600-2000ms)</span>
-    <span v-else-if="$clicks >= 7">View 3: Split by variant - "on" variant shows 3200-3800ms!</span>
+<div class="mt-3 px-2 py-2 bg-purple-900/20 border border-purple-800/50 rounded text-xs" style="box-shadow: 0 0 10px rgba(141,141,255,0.15);">
+  <div class="text-purple-300">
+    <span v-if="$clicks >= 5 && $clicks < 6">📊 View 1: All traffic - flag impact barely noticeable (165-225ms)</span>
+    <span v-else-if="$clicks >= 6 && $clicks < 7">🔍 View 2: Flag traffic only - clear spike visible (1600-2000ms)</span>
+    <span v-else-if="$clicks >= 7">🎯 View 3: Split by variant - "on" variant shows 3200-3800ms!</span>
     <span v-else>&nbsp;</span>
   </div>
 </div>
@@ -955,13 +975,15 @@ class: py-8
 
 </div>
 
-<div v-click="8" class="mt-6 p-4 bg-green-900/20 border border-green-500/30 rounded-lg">
+</div>
+
+<div v-click="8" class="mt-6 p-4 bg-green-900/20 border border-green-800 rounded-lg" style="box-shadow: 0 0 15px rgba(34, 197, 94, 0.2);">
 <div class="flex items-start gap-3">
-  <div class="i-carbon:checkmark-filled text-green-400 text-2xl mt-1" />
+  <div class="i-carbon:checkmark-filled text-green-400 text-2xl mt-1 flex-shrink-0" />
   <div>
     <div class="font-semibold text-green-300 mb-2">No More Guesswork</div>
     <div class="text-sm opacity-90">
-      With trace-level data, you can <span class="font-bold">instantly see</span> that variant "on" is causing 2.5-4s response times 
+      With trace-level data, you can <span class="font-bold">instantly see</span> that variant "on" is causing 2.5-4s response times
       while "control" maintains healthy 150-200ms performance. Root cause identified in seconds, not hours.
     </div>
   </div>
@@ -976,15 +998,12 @@ layout: center
 
 Trace-level observability makes
 
-feature flags a <span class="font-serif text-blue-400">first-class citizens</span>
+feature flags a <span class="text-blue-400">first-class citizens</span>
 
 in your monitoring stack
 
 </div>
 
-<div v-click class="mt-16 text-xl text-center opacity-80">
-No more guessing. No more manual correlation.
-</div>
 
 <!--
 This is the transformation we're enabling with OpenFeature and OpenTelemetry.
@@ -1006,27 +1025,51 @@ layout: default
 
 <div class="grid grid-cols-2 gap-8 mt-8">
 
-<div v-click>
+<div v-click class="border border-blue-500 rounded-lg p-6" style="background: linear-gradient(135deg, rgba(30, 64, 175, 0.6), rgba(29, 78, 216, 0.7)); box-shadow: 0 0 25px rgba(96, 165, 250, 0.35);">
 
-### OpenFeature
+<div class="flex items-center mb-6">
+  <div class="i-carbon:flag text-blue-300 text-3xl mr-3" />
+  <h3 class="text-2xl font-bold text-blue-100">OpenFeature</h3>
+</div>
 
-<div class="mt-4" />
-
-- 🚩 Open standard for **feature flagging**
-- 🔌 Vendor-neutral SDK
-- 🎣 **Hook system** for extensibility
+<div class="space-y-3 text-base">
+  <div class="flex items-start gap-3">
+    <div class="i-carbon:settings-adjust text-blue-200 text-xl mt-0.5 flex-shrink-0" />
+    <span>Open standard for <span class="font-bold">feature flagging</span></span>
+  </div>
+  <div class="flex items-start gap-3">
+    <div class="i-carbon:plug text-blue-200 text-xl mt-0.5 flex-shrink-0" />
+    <span>Vendor-neutral SDK</span>
+  </div>
+  <div class="flex items-start gap-3">
+    <div class="i-carbon:api text-blue-200 text-xl mt-0.5 flex-shrink-0" />
+    <span><span class="font-bold">Hook system</span> for extensibility</span>
+  </div>
+</div>
 
 </div>
 
-<div v-click>
+<div v-click class="border border-purple-500 rounded-lg p-6" style="background: linear-gradient(135deg, rgba(109, 40, 217, 0.6), rgba(124, 58, 237, 0.7)); box-shadow: 0 0 25px rgba(168, 85, 247, 0.35);">
 
-### OpenTelemetry
+<div class="flex items-center mb-6">
+  <div class="i-carbon:chart-line text-purple-300 text-3xl mr-3" />
+  <h3 class="text-2xl font-bold text-purple-100">OpenTelemetry</h3>
+</div>
 
-<div class="mt-4" />
-
-- 📊 Open standard for **observability**
-- 📈 Metrics, traces, and logs
-- 🏷️ **Semantic conventions** for consistency
+<div class="space-y-3 text-base">
+  <div class="flex items-start gap-3">
+    <div class="i-carbon:dashboard text-purple-200 text-xl mt-0.5 flex-shrink-0" />
+    <span>Open standard for <span class="font-bold">observability</span></span>
+  </div>
+  <div class="flex items-start gap-3">
+    <div class="i-carbon:data-vis-1 text-purple-200 text-xl mt-0.5 flex-shrink-0" />
+    <span>Metrics, traces, and logs</span>
+  </div>
+  <div class="flex items-start gap-3">
+    <div class="i-carbon:tag text-purple-200 text-xl mt-0.5 flex-shrink-0" />
+    <span><span class="font-bold">Semantic conventions</span> for consistency</span>
+  </div>
+</div>
 
 </div>
 
@@ -1035,13 +1078,18 @@ layout: default
 
 <div v-click class="mt-12">
 
-```mermaid {scale: 0.7}
+```mermaid {scale: 0.75}
 graph LR
     A[OpenFeature SDK] -->|Hooks| B[Flag Evaluation]
     B -->|Semantic Convention| C[OpenTelemetry]
     C -->|Events| D[Observability Platform]
-    C -->|Metrics| D[Observability Platform]
-    C -->|Traces| D[Observability Platform]
+    C -->|Metrics| D
+    C -->|Traces| D
+
+    style A fill:#6B7DFF,stroke:#93C5FD,stroke-width:3px,color:#fff
+    style B fill:#8D8DFF,stroke:#ABABFF,stroke-width:2px,color:#fff
+    style C fill:#ABABFF,stroke:#B7B9FF,stroke-width:3px,color:#222
+    style D fill:#8D8DFF,stroke:#B7B9FF,stroke-width:2px,color:#fff
 ```
 
 </div>
@@ -1142,7 +1190,7 @@ layout: default
 
 # How It Works: OpenFeature Hooks
 
-```typescript {all|1-2,5-6|1,3,8-9|10-24|26-35|all}{maxHeight: '420px'}
+```typescript {all|1-2,5-6|1,3,8-9|10-24|all}{maxHeight: '420px'}
 import { OpenFeature } from '@openfeature/server-sdk';
 import { MyProvider } from 'my-flag-provider';
 import { EventHook } from '@openfeature/open-telemetry-hooks';
@@ -1167,29 +1215,21 @@ const variant = await client.getStringValue(
   'control',
   context
 );
-
-// Flag evaluation is now in the trace with attributes:
-//   - feature_flag.key: "new-checkout-flow"
-//   - feature_flag.result.variant: "treatment"
-//   - feature_flag.result.value: "express-checkout"
-//   - feature_flag.result.reason: "targeting_match"
-//   - feature_flag.provider.name: "my-flag-provider"
-//   - feature_flag.set.id: "acme-org/web-app/production"
-//   - feature_flag.version: "v42"
-//   - feature_flag.context.id: "user_123"
 ```
-
-<!--
-The hook system makes this seamless - no manual instrumentation needed.
--->
 
 ---
 layout: default
+class: py-8
 ---
 
-# Flag Evaluation in a Trace
+# Seeing It in Action
 
-<img src="/traces.png" class="w-full rounded-lg shadow-lg mt-12" />
+<span class="opacity-80">Feature flag evaluation captured in distributed tracing</span>
+
+<div class="mt-8 p-4 rounded-xl" style="background: linear-gradient(135deg, rgba(141, 141, 255, 0.08), rgba(109, 118, 255, 0.08)); border: 1.5px solid rgba(141, 141, 255, 0.25); box-shadow: 0 0 30px rgba(109, 118, 255, 0.2);">
+  <img src="/traces.png" class="w-full rounded-lg" style="box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);" />
+</div>
+
 
 ---
 layout: default
@@ -1226,17 +1266,15 @@ graph LR
     A[Any Flag Provider] --> B[OpenFeature SDK]
     B --> C[OpenTelemetry Hook]
     C --> D[Any Observability Backend]
-    
-    style B fill:#4a9eff
-    style C fill:#e89b5f
+
+    style A fill:#707D86,color:#fff
+    style B fill:#8D8DFF,color:#fff
+    style C fill:#ABABFF,color:#222
+    style D fill:#6B7DFF,color:#fff
 ```
 
 </div>
 
-
-<!--
-Standards enable an ecosystem where everything works together seamlessly.
--->
 
 ---
 layout: section
@@ -1279,25 +1317,21 @@ graph TD
     B --> C[10% - Early Adopters]
     C --> D[50% - Broader Rollout]
     D --> E[100% - Full Release]
-    
+
     B -.->|Issues?| F[Instant Rollback]
     C -.->|Issues?| F
     D -.->|Issues?| F
-    
-    style A fill:#666
-    style B fill:#f5a623
-    style C fill:#4a9eff
-    style D fill:#6f6
-    style E fill:#0f6
-    style F fill:#f66
+
+    style A fill:#55595F,color:#fff
+    style B fill:#FB923C,color:#222
+    style C fill:#8D8DFF,color:#fff
+    style D fill:#6B7DFF,color:#fff
+    style E fill:#4ADE80,color:#222
+    style F fill:#EF4444,color:#fff
 ```
 
 </div>
 
-</div>
-
-<div v-click class="mt-4 text-center opacity-70 text-sm">
-[IMAGE PLACEHOLDER: Visual diagram of gradual rollout percentages]
 </div>
 
 <!--
@@ -1306,47 +1340,17 @@ Progressive delivery is the new standard for feature releases, but it requires o
 
 ---
 layout: default
+class: px-8 py-6
+clicks: 3
 ---
 
 # Observability Enables Progressive Delivery
 
-### The Feedback Loop
+<span class="opacity-80">Variant-level visibility reveals the root cause</span>
 
-```typescript {all|1-5|7-13|15-19|21-25|all}
-// 1. Start rollout at 1%
-await flagProvider.updateRollout('new-feature', {
-  percentage: 1,
-  targeting: { tier: 'internal' }
-});
-
-// 2. Monitor observability data
-const metrics = await observability.query({
-  feature_flag_key: 'new-feature',
-  feature_flag_variant: 'enabled',
-  timeRange: 'last_30m'
-});
-
-if (metrics.errorRate > 0.5) {
-  // Problem detected! Rollback
-  await flagProvider.updateRollout('new-feature', { percentage: 0 });
-  alert('Rollback triggered - error rate exceeded threshold');
-}
-
-// 3. Gradually increase if healthy
-if (metrics.errorRate < 0.1 && metrics.p95Latency < 500) {
-  await flagProvider.updateRollout('new-feature', { percentage: 10 });
-  console.log('Rollout increased to 10%');
-}
-
-// 4. Compare variants
-const comparison = await observability.compare({
-  variant_a: 'control', variant_b: 'enabled', metric: 'conversion_rate'
-});
-```
-
-<!--
-With flag observability, progressive delivery becomes automated and data-driven.
--->
+<div class="mt-2">
+  <ProgressiveDeliveryDashboard />
+</div>
 
 ---
 layout: center
@@ -1354,36 +1358,110 @@ layout: center
 
 # Key Benefits
 
-<div class="grid grid-cols-2 gap-12 mt-12">
+<div class="grid grid-cols-2 gap-8 mt-12 px-12">
 
 <div v-click>
-
-### Without Flag Observability
-
-- ❌ Blind rollouts
-- ❌ Slow to detect issues
-- ❌ Manual rollback decisions
-- ❌ Can't compare variants
-- ❌ High-risk deployments
-
+  <div
+    border="1.5 solid amber-600"
+    rounded-lg
+    overflow-hidden
+    bg="amber-900/20"
+    backdrop-blur-sm
+    style="box-shadow: 0 8px 32px 0 rgba(217, 119, 6, 0.25);"
+  >
+    <div
+      flex items-center
+      px-5 py-4
+      style="background: linear-gradient(135deg, rgba(217, 119, 6, 0.25), rgba(146, 64, 14, 0.25));"
+    >
+      <div class="i-carbon:close-filled text-amber-300 text-xl mr-3" />
+      <h3 class="text-amber-200 font-semibold text-lg">Without Observability</h3>
+    </div>
+    <div px-5 py-5>
+      <div class="space-y-3 text-base">
+        <div flex items-start gap-3>
+          <div class="i-carbon:view-off text-amber-400 text-lg mt-0.5 flex-shrink-0" />
+          <span>Blind rollouts</span>
+        </div>
+        <div flex items-start gap-3>
+          <div class="i-carbon:time text-amber-400 text-lg mt-0.5 flex-shrink-0" />
+          <span>Slow to detect issues</span>
+        </div>
+        <div flex items-start gap-3>
+          <div class="i-carbon:touch-1 text-amber-400 text-lg mt-0.5 flex-shrink-0" />
+          <span>Manual rollback decisions</span>
+        </div>
+        <div flex items-start gap-3>
+          <div class="i-carbon:unknown text-amber-400 text-lg mt-0.5 flex-shrink-0" />
+          <span>Can't compare variants</span>
+        </div>
+        <div flex items-start gap-3>
+          <div class="i-carbon:warning-alt text-amber-400 text-lg mt-0.5 flex-shrink-0" />
+          <span>High-risk deployments</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div v-click>
-
-### With Flag Observability
-
-- ✅ Data-driven rollouts
-- ✅ Instant issue detection
-- ✅ Automated rollback triggers
-- ✅ Real-time variant comparison
-- ✅ Low-risk deployments
-
+  <div
+    border="1.5 solid purple-light"
+    rounded-lg
+    overflow-hidden
+    class="bg-gradient-card"
+    backdrop-blur-sm
+    style="box-shadow: 0 8px 32px 0 rgba(109, 118, 255, 0.35);"
+  >
+    <div
+      flex items-center
+      px-5 py-4
+      class="bg-gradient-purple"
+    >
+      <div class="i-carbon:checkmark-filled text-purple-bright text-xl mr-3" />
+      <h3 class="text-purple-bright font-semibold text-lg">With Observability</h3>
+    </div>
+    <div px-5 py-5>
+      <div class="space-y-3 text-base">
+        <div flex items-start gap-3>
+          <div class="i-carbon:data-vis-1 text-blue-400 text-lg mt-0.5 flex-shrink-0" />
+          <span>Data-driven rollouts</span>
+        </div>
+        <div flex items-start gap-3>
+          <div class="i-carbon:flash text-blue-400 text-lg mt-0.5 flex-shrink-0" />
+          <span>Instant issue detection</span>
+        </div>
+        <div flex items-start gap-3>
+          <div class="i-carbon:workflow-automation text-blue-400 text-lg mt-0.5 flex-shrink-0" />
+          <span>Automated rollback triggers</span>
+        </div>
+        <div flex items-start gap-3>
+          <div class="i-carbon:chart-line text-blue-400 text-lg mt-0.5 flex-shrink-0" />
+          <span>Real-time variant comparison</span>
+        </div>
+        <div flex items-start gap-3>
+          <div class="i-carbon:security text-blue-400 text-lg mt-0.5 flex-shrink-0" />
+          <span>Low-risk deployments</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 </div>
 
-<div v-click class="mt-16 text-center text-2xl">
-Feature flag observability transforms progressive delivery from <span class="text-red-400">theory</span> to <span class="text-green-400">practice</span>
+<div v-click class="mt-12 flex justify-center">
+  <div
+    class="bg-gradient-purple"
+    border="1.5 solid purple-bright"
+    rounded-lg
+    px-8 py-4
+    style="box-shadow: 0 0 25px rgba(109, 118, 255, 0.35);"
+  >
+    <div class="text-2xl text-center">
+      Observability is the <span class="text-purple-bright font-bold">key</span> to progressive delivery
+    </div>
+  </div>
 </div>
 
 
@@ -1394,7 +1472,7 @@ class: text-center
 
 # Let's Build the Future Together
 
-<div class="mt-16 text-xl leading-relaxed">
+<div class="mt-12 text-xl leading-relaxed space-y-3">
 
 <v-click>
 
@@ -1404,13 +1482,13 @@ Feature flags are powerful tools for modern software delivery
 
 <v-click>
 
-But they need to be <span class="text-blue-400 font-bold">visible</span> in our observability stack
+But they need to be <span v-mark.underline.purple="2" class="text-purple-400">visible</span> in our observability stack
 
 </v-click>
 
 <v-click>
 
-OpenFeature + OpenTelemetry make this possible with <span class="text-green-400 font-bold">open standards</span>
+OpenFeature + OpenTelemetry make this possible with <span v-mark.underline.blue="3" class="text-blue-400">open standards</span>
 
 </v-click>
 
@@ -1422,8 +1500,8 @@ Join us in transforming how we understand and deploy software
 
 </div>
 
-<div v-click class="mt-16 text-3xl font-bold text-blue-400">
-From "What broke?" to "What changed!"
+<div v-click class="mt-16 text-3xl">
+From <span class="font-serif">"What Broke"</span> to <span class="font-serif">"What Changed"</span>
 </div>
 
 <!--
@@ -1435,60 +1513,98 @@ layout: center
 class: text-center
 ---
 
-# <span class="font-serif">Thank You! 🙏</span>
+<div class="flex flex-col items-center justify-center h-full">
 
-<div class="mt-12 text-xl space-y-4">
-<div class="font-serif text-2xl">Questions?</div>
-<div class="mt-8 opacity-80">Find us after the talk or online:</div>
+<h1 class="text-6xl font-bold mb-8">
+  <span class="text-purple-400" style="text-shadow: 0 0 30px rgba(224, 224, 255, 0.5);">Thank You!</span>
+</h1>
+
+<div class="text-3xl text-purple-400 mb-12" style="text-shadow: 0 0 20px rgba(183, 185, 255, 0.4);">
+  Questions?
 </div>
 
-<div class="mt-12 grid grid-cols-2 gap-8 text-left max-w-2xl mx-auto">
+<div class="text-lg text-purple-light opacity-90 mb-12">
+  Find us after the talk or online:
+</div>
 
-<div border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm p-6>
-  <div flex items-center mb-4>
-    <div i-carbon:link text-blue-300 text-2xl mr-3 />
-    <h3 class="text-lg font-semibold">Resources</h3>
+<div class="grid grid-cols-2 gap-8 text-left max-w-3xl w-full px-8">
+
+<div
+  class="bg-gradient-card"
+  border="1.5 solid purple-light"
+  rounded-xl
+  overflow-hidden
+  style="box-shadow: 0 8px 32px 0 rgba(60,66,110,0.38), 0 0 0 2px rgba(141,141,255,0.08), 0 0 20px rgba(109, 118, 255, 0.25);"
+>
+  <div
+    flex items-center
+    px-5 py-4
+    class="bg-gradient-purple"
+  >
+    <div
+      class="w-12 h-12 rounded-lg flex items-center justify-center mr-3"
+      style="background: linear-gradient(135deg, rgba(141, 141, 255, 0.4), rgba(183, 185, 255, 0.25)); box-shadow: 0 2px 12px rgba(141,141,255,0.2);"
+    >
+      <div class="i-carbon:link text-purple-bright text-2xl" style="filter: drop-shadow(0 0 8px rgba(224, 224, 255, 0.6));" />
+    </div>
+    <h3 class="text-xl font-bold text-purple-bright">Resources</h3>
   </div>
-  <div flex flex-col gap-3 text-sm>
-    <div flex items-center>
-      <div i-carbon:flag mr-2 text-purple-400 />
-      <span>openfeature.dev</span>
-    </div>
-    <div flex items-center>
-      <div i-carbon:chart-line mr-2 text-amber-400 />
-      <span>opentelemetry.io</span>
-    </div>
-    <div flex items-center>
-      <div i-carbon:logo-github mr-2 text-green-400 />
-      <span>github.com/open-telemetry/opentelemetry-demo</span>
+  <div px-5 py-5>
+    <div flex flex-col gap-4 text-base class="text-purple-light">
+      <div flex items-center>
+        <div class="i-carbon:flag mr-3 text-lg" />
+        <span>openfeature.dev</span>
+      </div>
+      <div flex items-center>
+        <div class="i-carbon:logo-github mr-3 text-lg" />
+        <span class="text-sm">github.com/open-openfeature/</span>
+      </div>
+      <div flex items-center>
+        <div class="i-carbon:chart-line mr-3 text-lg" />
+        <span>opentelemetry.io</span>
+      </div>
     </div>
   </div>
 </div>
 
-<div border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm p-6>
-  <div flex items-center mb-4>
-    <div i-carbon:user-multiple text-green-300 text-2xl mr-3 />
-    <h3 class="text-lg font-semibold">Connect</h3>
+<div
+  class="bg-gradient-card"
+  border="1.5 solid purple-light"
+  rounded-xl
+  overflow-hidden
+  style="box-shadow: 0 8px 32px 0 rgba(60,66,110,0.38), 0 0 0 2px rgba(141,141,255,0.08), 0 0 20px rgba(109, 118, 255, 0.25);"
+>
+  <div
+    flex items-center
+    px-5 py-4
+    class="bg-gradient-purple"
+  >
+    <div
+      class="w-12 h-12 rounded-lg flex items-center justify-center mr-3"
+      style="background: linear-gradient(135deg, rgba(141, 141, 255, 0.4), rgba(183, 185, 255, 0.25)); box-shadow: 0 2px 12px rgba(141,141,255,0.2);"
+    >
+      <div class="i-carbon:user-multiple text-purple-bright text-2xl" style="filter: drop-shadow(0 0 8px rgba(224, 224, 255, 0.6));" />
+    </div>
+    <h3 class="text-xl font-bold text-purple-bright">Connect</h3>
   </div>
-  <div flex flex-col gap-3 text-sm>
-    <div flex items-center>
-      <div i-carbon:chat mr-2 text-blue-400 />
-      <span>CNCF Slack: #openfeature</span>
-    </div>
-    <div flex items-center>
-      <div i-carbon:chat mr-2 text-amber-400 />
-      <span>CNCF Slack: #opentelemetry</span>
-    </div>
-    <div flex items-center>
-      <div i-carbon:logo-twitter mr-2 text-blue-300 />
-      <span>@openfeature / @opentelemetry</span>
+  <div px-5 py-5>
+    <div flex flex-col gap-4 text-base class="text-purple-light">
+      <div flex items-center>
+        <div class="i-carbon:logo-slack mr-3 text-lg" />
+        <span>CNCF Slack: #openfeature</span>
+      </div>
+      <div flex items-center>
+        <div class="i-carbon:logo-slack mr-3 text-lg" />
+        <span>CNCF Slack: #opentelemetry</span>
+      </div>
+      <div flex items-center>
+        <div class="i-carbon:logo-twitter mr-3 text-lg" />
+        <span>@openfeature / @opentelemetry</span>
+      </div>
     </div>
   </div>
 </div>
 
 </div>
 
-<!-- <div class="abs-br m-6 flex items-center gap-2 opacity-50">
-  <div i-carbon:presentation-file />
-  <span text-sm>Slides: github.com/open-feature/presentations</span>
-</div> -->
+</div>

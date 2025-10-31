@@ -3,6 +3,7 @@ pre code {
   word-break: break-all !important;
 }
 
+/* Animation keyframes */
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -14,6 +15,93 @@ pre code {
   }
 }
 
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(109, 118, 255, 0.35);
+  }
+
+  50% {
+    box-shadow: 0 0 30px rgba(109, 118, 255, 0.5);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Utility classes */
 .animate-fade-in {
   animation: fade-in 0.6s ease-out;
+}
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 3s linear infinite;
+  background-size: 200% 100%;
+}
+
+/* Purple gradient text */
+.text-gradient-purple {
+  background: linear-gradient(135deg, #8D8DFF, #ABABFF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Gradient backgrounds for depth and modern look */
+.bg-gradient-purple {
+  background: linear-gradient(135deg, rgba(141, 141, 255, 0.32), rgba(183, 185, 255, 0.18));
+}
+
+.bg-gradient-dark {
+  background: linear-gradient(135deg, rgba(54, 56, 85, 0.82), rgba(26, 28, 44, 0.92));
+}
+
+.bg-gradient-card {
+  background: linear-gradient(135deg, rgba(54, 56, 85, 0.5), rgba(24, 26, 38, 0.45));
+}
+
+/* Enhanced focus states for accessibility */
+.focus-purple:focus-visible {
+  outline: 2px solid #8D8DFF;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(141, 141, 255, 0.2);
+}
+
+/* Smooth transitions for interactive elements */
+.transition-glow {
+  transition: box-shadow 0.3s cubic-bezier(0.4, 0.15, 0.25, 1);
+}
+
+.transition-glow:hover {
+  box-shadow: 0 0 25px rgba(109, 118, 255, 0.35);
+}
+
+/* Custom scrollbar with purple theme */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(24, 26, 38, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(141, 141, 255, 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(141, 141, 255, 0.7);
 }

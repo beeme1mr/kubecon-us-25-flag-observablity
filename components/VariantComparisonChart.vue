@@ -228,7 +228,7 @@ onSlideLeave(() => {
 
 <template>
   <div>
-    <div class="text-sm font-semibold mb-2 opacity-80">Response Time Analysis</div>
+    <div class="text-sm font-semibold mb-2 opacity-80">Response Time</div>
     <div style="width: 400px; height: 200px;">
       <canvas ref="chartCanvas"></canvas>
     </div>

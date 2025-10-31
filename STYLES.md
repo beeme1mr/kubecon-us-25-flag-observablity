@@ -2,6 +2,49 @@
 
 A comprehensive guide for creating consistent, professional presentations for OpenFeature using Slidev.
 
+## Quick Reference: Purple/Blue Gradient Theme
+
+The OpenFeature presentation style uses a **modern purple/blue gradient aesthetic** with glowing effect that creates a cohesive, professional look across all slides.
+
+### Core Theme Elements
+
+```css
+/* Primary Colors */
+Purple: #8D8DFF, #ABABFF, #5D5DFF
+Blue: #6B7DFF, #93C5FD
+Light accents: #B7B9FF, #E0E0FF
+
+/* Gradient Backgrounds */
+bg-gradient-dark      /* Primary card background */
+bg-gradient-purple    /* Icon badges and highlights */
+bg-gradient-card      /* Secondary containers */
+
+/* Borders */
+border-purple-bright  /* #A3A3FF - Primary elements */
+border-purple-light   /* rgba(141,141,255,0.35) - Secondary */
+border-subtle         /* rgba(122,126,160,0.38) - Nested */
+
+/* Glow Effects */
+glow-purple          /* 0 0 25px rgba(109,118,255,0.35) */
+glow-blue            /* 0 0 20px rgba(93,93,255,0.4) */
+glow-purple-soft     /* 0 0 15px rgba(141,141,255,0.25) */
+```
+
+### Quick Start Example
+
+```md
+<!-- Modern card with full theme -->
+<div class="card-purple glow-purple-soft" px-6 py-5>
+  <div flex items-center gap-3 mb-4>
+    <div class="bg-gradient-purple w-12 h-12 rounded-lg flex items-center justify-center">
+      <div class="i-carbon:flag text-purple-bright text-2xl" />
+    </div>
+    <h3 class="text-gradient-purple text-3xl font-bold">Title</h3>
+  </div>
+  <p text-lg text-purple-light>Content with beautiful gradients</p>
+</div>
+```
+
 ## Table of Contents
 
 - [Quick Start](#quick-start)
@@ -59,35 +102,91 @@ routerMode: hash
 Use these colors for OpenFeature branding and key elements based on the [OpenFeature Branding Guidelines](https://openfeature.dev/community/branding-guidelines):
 
 ```css
-/* Purple - Primary brand color */
+/* Purple - Primary brand color with variations */
+.text-purple-100 { color: #F4F4FF; }
+.text-purple-200 { color: #E2E1FF; }
+.text-purple-300 { color: #CBCCFF; }
+.text-purple-400 { color: #ABABFF; }
 .text-purple-500 { color: #8D8DFF; }
 .text-purple-600 { color: #5D5DFF; }
 .text-purple-700 { color: #4B4ACF; }
+.text-purple-800 { color: #38379C; }
+.text-purple-900 { color: #262668; }
 
-/* Blue - Secondary/accent */
+/* Light purple text for high contrast on dark backgrounds */
+.text-purple-light { color: #B7B9FF; }
+.text-purple-bright { color: #E0E0FF; }
+
+/* Blue - Secondary/accent colors */
 .text-blue-400 { color: #ABABFF; }
 .text-blue-500 { color: #6B7DFF; }
+.text-blue-600 { color: #5D5DFF; }
 
-/* Green - Success/positive */
-.text-green-400 { color: #4ADE80; }
-.text-green-500 { color: #22C55E; }
+/* Gradient backgrounds for depth and modern look */
+.bg-gradient-purple { 
+  background: linear-gradient(135deg, rgba(141, 141, 255, 0.32), rgba(183, 185, 255, 0.18));
+}
+.bg-gradient-dark {
+  background: linear-gradient(135deg, rgba(54, 56, 85, 0.82), rgba(26, 28, 44, 0.92));
+}
+.bg-gradient-card {
+  background: linear-gradient(135deg, rgba(54, 56, 85, 0.5), rgba(24, 26, 38, 0.45));
+}
+
+/* Glow effects for emphasis */
+.glow-purple {
+  box-shadow: 0 0 25px rgba(109, 118, 255, 0.35);
+}
+.glow-blue {
+  box-shadow: 0 0 20px rgba(93, 93, 255, 0.4);
+}
 ```
 
 ### Semantic Colors
 
 ```css
-/* Warning/attention */
+/* Success/positive - Green accents */
+.text-green-400 { color: #4ADE80; }
+.text-green-500 { color: #22C55E; }
+
+/* Warning/attention - Orange/Amber */
 .text-orange-500 { color: #FB923C; }
 .text-amber-300 { color: #FCD34D; }
 
-/* Error/critical */
+/* Error/critical - Red accents */
 .text-red-500 { color: #EF4444; }
 .text-red-400 { color: #F87171; }
 
+/* Context switch warning (salmon/coral) */
+.text-context-warning { color: #FA8072; }
+.bg-context-warning { background: rgba(250, 128, 114, 1); }
+
+/* Summary/info (golden yellow) */
+.text-summary-color { color: #FAD16E; }
+.bg-summary-color { background: rgba(250, 209, 110, 1); }
+
 /* Neutral grays (from uno.config.ts) */
+.text-gray-100 { color: #EBF1F5; }
+.text-gray-200 { color: #D9E3EA; }
+.text-gray-300 { color: #C5D2DC; }
 .text-gray-400 { color: #9BA9B4; }
 .text-gray-500 { color: #707D86; }
 .text-gray-600 { color: #55595F; }
+.text-gray-700 { color: #33363A; }
+.text-gray-800 { color: #25282C; }
+.text-gray-900 { color: #151719; }
+```
+
+### Border Colors
+
+```css
+/* Purple borders for OpenFeature brand elements */
+.border-purple-light { border-color: rgba(141, 141, 255, 0.35); }
+.border-purple-medium { border-color: rgba(139, 140, 215, 0.28); }
+.border-purple-bright { border-color: #A3A3FF; }
+
+/* Subtle borders for cards and containers */
+.border-subtle { border-color: rgba(122, 126, 160, 0.38); }
 ```
 
 ### Usage Examples
@@ -294,27 +393,50 @@ Use `v-mark` for emphasis:
 
 ## Component Library
 
-### Card Component
+### Modern Card Component
+
+Use gradient backgrounds and subtle borders for a polished, modern look:
 
 ```md
-<div border="2 solid white/5" rounded-lg overflow-hidden bg="white/5" backdrop-blur-sm>
-  <div flex items-center bg="white/10" backdrop-blur px-3 py-2>
-    <div i-carbon:idea text-blue-300 text-sm mr-2 />
-    <span font-bold>Card Title</span>
+<div 
+  border="1.5 solid purple-light" 
+  rounded-xl 
+  overflow-hidden 
+  class="bg-gradient-dark"
+  style="box-shadow: 0 8px 32px 0 rgba(60,66,110,0.38), 0 0 0 2px rgba(141,141,255,0.08);"
+>
+  <div 
+    flex items-center 
+    px-4 py-3
+    style="background: linear-gradient(135deg, rgba(141,141,255,0.32), rgba(183,185,255,0.18));"
+  >
+    <div class="i-carbon:idea text-purple-bright text-xl mr-3" />
+    <span font-bold text-purple-bright>Card Title</span>
   </div>
-  <div px-4 py-3>
-    Card content goes here
+  <div px-5 py-4 text-purple-light>
+    Card content goes here with beautiful gradients
   </div>
 </div>
 ```
 
-### Info Box
+### Info Box (Purple/Blue Theme)
 
 ```md
-<div bg="blue-900/30" border="2 solid blue-800" rounded-lg px-5 py-3>
-  <div flex items-center gap-2>
-    <div i-carbon:information text-blue-300 text-xl />
-    <span>Information message</span>
+<div 
+  class="bg-gradient-card"
+  border="1.5 solid purple-light" 
+  rounded-lg 
+  px-5 py-3
+  style="box-shadow: 0 0 20px rgba(109, 118, 255, 0.25);"
+>
+  <div flex items-center gap-3>
+    <div 
+      class="i-carbon:information"
+      text-2xl
+      text-blue-400
+      style="filter: drop-shadow(0 0 8px rgba(171,171,255,0.6));"
+    />
+    <span text-purple-light>Information with subtle glow</span>
   </div>
 </div>
 ```
@@ -322,10 +444,16 @@ Use `v-mark` for emphasis:
 ### Warning Box
 
 ```md
-<div bg="orange-900/30" border="2 solid orange-800" rounded-lg px-5 py-3>
-  <div flex items-center gap-2>
-    <div i-carbon:warning text-orange-300 text-xl />
-    <span>Warning message</span>
+<div 
+  bg="orange-900/30" 
+  border="2 solid orange-800" 
+  rounded-lg 
+  px-5 py-3
+  style="box-shadow: 0 0 15px rgba(251, 146, 60, 0.2);"
+>
+  <div flex items-center gap-3>
+    <div class="i-carbon:warning text-orange-300 text-2xl" />
+    <span text-orange-300>Warning message</span>
   </div>
 </div>
 ```
@@ -333,10 +461,16 @@ Use `v-mark` for emphasis:
 ### Success Box
 
 ```md
-<div bg="green-900/30" border="2 solid green-800" rounded-lg px-5 py-3>
-  <div flex items-center gap-2>
-    <div i-carbon:checkmark text-green-300 text-xl />
-    <span>Success message</span>
+<div 
+  bg="green-900/30" 
+  border="2 solid green-800" 
+  rounded-lg 
+  px-5 py-3
+  style="box-shadow: 0 0 15px rgba(34, 197, 94, 0.2);"
+>
+  <div flex items-center gap-3>
+    <div class="i-carbon:checkmark text-green-400 text-2xl" />
+    <span text-green-400>Success message</span>
   </div>
 </div>
 ```
@@ -344,11 +478,50 @@ Use `v-mark` for emphasis:
 ### Error Box
 
 ```md
-<div bg="red-900/30" border="2 solid red-800" rounded-lg px-5 py-3>
-  <div flex items-center gap-2>
-    <div i-carbon:error text-red-300 text-xl />
-    <span>Error message</span>
+<div 
+  bg="red-900/30" 
+  border="2 solid red-800" 
+  rounded-lg 
+  px-5 py-3
+  style="box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);"
+>
+  <div flex items-center gap-3>
+    <div class="i-carbon:error text-red-400 text-2xl" />
+    <span text-red-400>Error message</span>
   </div>
+</div>
+```
+
+### Icon Badge
+
+Use for highlighting icons with gradient backgrounds:
+
+```md
+<div
+  w-12 h-12
+  rounded-lg
+  flex items-center justify-center
+  class="bg-gradient-purple"
+  style="box-shadow: 0 2px 12px rgba(141,141,255,0.12);"
+>
+  <div class="i-carbon:flag text-purple-bright text-2xl" />
+</div>
+```
+
+### Glowing Button/Action
+
+```md
+<div
+  px-6 py-3
+  rounded-lg
+  class="bg-gradient-purple"
+  border="1.5 solid purple-bright"
+  text-purple-bright
+  font-bold
+  cursor-pointer
+  style="box-shadow: 0 0 25px rgba(109, 118, 255, 0.35); transition: all 0.3s ease;"
+>
+  Primary Action
 </div>
 ```
 
