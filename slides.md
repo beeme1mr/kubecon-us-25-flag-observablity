@@ -421,15 +421,9 @@ class: py-10
 
 <div class="space-y-3">
 
-<FlagChangeLog
-  flag-name="recommendationServiceCacheCompression"
-  user-name="Sarah Chen"
-  user-email="sarah.chen@acme.com"
-  timestamp="Oct 15, 2025, 10:03 AM"
-  old-value="off"
-  new-value="on"
-  change-reason="Testing new cache implementation in production"
-/>
+
+<img src="/audit-log.png" class="w-full rounded-lg" style="box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);" />
+
 
 <div class="mt-3 p-3 bg-purple-900/30 border border-purple-800 rounded-lg" style="box-shadow: 0 0 15px rgba(141,141,255,0.2);">
 <div class="text-xs font-semibold mb-2 text-purple-300">The Hidden Truth</div>
@@ -876,7 +870,7 @@ graph TD
 </div>
 
 <div v-click="3" class="mt-6 text-center text-lg opacity-90">
-Solves the scaling problem, but we need <span class="text-blue-400 font-bold">request-level</span> observability
+Solves the scaling problem, but requires a more complicated setup. How can it be improved further?
 </div>
 
 ---
@@ -902,6 +896,14 @@ clicks: 4
   <div>
     <div class="font-semibold">See flag evaluations</div>
     <div class="text-sm opacity-70">Every trace shows which flags were evaluated</div>
+  </div>
+</div>
+
+<div class="flex items-start gap-3">
+  <div class="i-carbon:view text-blue-400 text-xl mt-1 flex-shrink-0" />
+  <div>
+    <div class="font-semibold">Realtime mapping of flag presence per service</div>
+    <div class="text-sm opacity-70">Filter by traces with specific flag presence</div>
   </div>
 </div>
 
@@ -1089,7 +1091,7 @@ layout: default
 
 <div class="p-2 bg-white/5 rounded">
 <code class="text-blue-300">feature_flag.provider.name</code>
-<div class="text-xs opacity-70 mt-1">Flag provider (e.g., "flagd", "launchdarkly")</div>
+<div class="text-xs opacity-70 mt-1">Flag provider (e.g., "flagd", "launchdarkly", "devcycle")</div>
 </div>
 
 <div class="p-2 bg-white/5 rounded">
@@ -1304,6 +1306,16 @@ graph TD
 <!--
 Progressive delivery is the new standard for feature releases, but it requires observability.
 -->
+
+---
+class: px-8 py-6
+---
+
+# Rollout targeting setup
+
+<div class="flex items-center justify-center mt-4">
+  <img src="/rollout-targeting.png" class="rounded-lg" style="max-height: 55vh; max-width: 90%; object-fit: contain; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);" />
+</div>
 
 ---
 layout: default
