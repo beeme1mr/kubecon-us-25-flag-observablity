@@ -421,7 +421,9 @@ class: py-10
 
 <div class="space-y-3">
 
-<FlagChangeLog
+
+<img src="/audit-log.png" class="w-full rounded-lg" style="box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);" />
+<!-- <FlagChangeLog
   flag-name="recommendationServiceCacheCompression"
   user-name="Sarah Chen"
   user-email="sarah.chen@acme.com"
@@ -429,7 +431,9 @@ class: py-10
   old-value="off"
   new-value="on"
   change-reason="Testing new cache implementation in production"
-/>
+/> -->
+
+
 
 <div class="mt-3 p-3 bg-purple-900/30 border border-purple-800 rounded-lg" style="box-shadow: 0 0 15px rgba(141,141,255,0.2);">
 <div class="text-xs font-semibold mb-2 text-purple-300">The Hidden Truth</div>
@@ -1328,7 +1332,6 @@ class: px-8 py-6
 </div>
 
 ---
-
 layout: default
 class: px-8 py-6
 clicks: 3
