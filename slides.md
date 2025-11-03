@@ -876,7 +876,7 @@ graph TD
 </div>
 
 <div v-click="3" class="mt-6 text-center text-lg opacity-90">
-Solves the scaling problem, but we need <span class="text-blue-400 font-bold">request-level</span> observability
+Solves the scaling problem, but requires a more complicated setup. How can it be improved further?
 </div>
 
 ---
@@ -902,6 +902,14 @@ clicks: 4
   <div>
     <div class="font-semibold">See flag evaluations</div>
     <div class="text-sm opacity-70">Every trace shows which flags were evaluated</div>
+  </div>
+</div>
+
+<div class="flex items-start gap-3">
+  <div class="i-carbon:view text-blue-400 text-xl mt-1 flex-shrink-0" />
+  <div>
+    <div class="font-semibold">Realtime mapping of flag presence per service</div>
+    <div class="text-sm opacity-70">Filter by traces with specific flag presence</div>
   </div>
 </div>
 
@@ -1089,7 +1097,7 @@ layout: default
 
 <div class="p-2 bg-white/5 rounded">
 <code class="text-blue-300">feature_flag.provider.name</code>
-<div class="text-xs opacity-70 mt-1">Flag provider (e.g., "flagd", "launchdarkly")</div>
+<div class="text-xs opacity-70 mt-1">Flag provider (e.g., "flagd", "launchdarkly", "devcycle")</div>
 </div>
 
 <div class="p-2 bg-white/5 rounded">
@@ -1306,6 +1314,21 @@ Progressive delivery is the new standard for feature releases, but it requires o
 -->
 
 ---
+
+## layout: default
+
+class: px-8 py-6
+
+---
+
+# Rollout targeting setup
+
+<div class="mt-8 p-4 rounded-xl" style="background: linear-gradient(135deg, rgba(141, 141, 255, 0.08), rgba(109, 118, 255, 0.08)); border: 1.5px solid rgba(141, 141, 255, 0.25); box-shadow: 0 0 30px rgba(109, 118, 255, 0.2);">
+  <img src="/rollout-targeting.png" class="w-full rounded-lg" style="box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);" />
+</div>
+
+---
+
 layout: default
 class: px-8 py-6
 clicks: 3
