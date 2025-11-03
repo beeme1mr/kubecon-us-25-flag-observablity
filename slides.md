@@ -423,16 +423,6 @@ class: py-10
 
 
 <img src="/audit-log.png" class="w-full rounded-lg" style="box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);" />
-<!-- <FlagChangeLog
-  flag-name="recommendationServiceCacheCompression"
-  user-name="Sarah Chen"
-  user-email="sarah.chen@acme.com"
-  timestamp="Oct 15, 2025, 10:03 AM"
-  old-value="off"
-  new-value="on"
-  change-reason="Testing new cache implementation in production"
-/> -->
-
 
 
 <div class="mt-3 p-3 bg-purple-900/30 border border-purple-800 rounded-lg" style="box-shadow: 0 0 15px rgba(141,141,255,0.2);">
@@ -1318,17 +1308,13 @@ Progressive delivery is the new standard for feature releases, but it requires o
 -->
 
 ---
-
-## layout: default
-
 class: px-8 py-6
-
 ---
 
 # Rollout targeting setup
 
-<div class="mt-8 p-4 rounded-xl" style="background: linear-gradient(135deg, rgba(141, 141, 255, 0.08), rgba(109, 118, 255, 0.08)); border: 1.5px solid rgba(141, 141, 255, 0.25); box-shadow: 0 0 30px rgba(109, 118, 255, 0.2);">
-  <img src="/rollout-targeting.png" class="w-full rounded-lg" style="box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);" />
+<div class="flex items-center justify-center mt-4">
+  <img src="/rollout-targeting.png" class="rounded-lg" style="max-height: 55vh; max-width: 90%; object-fit: contain; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);" />
 </div>
 
 ---
