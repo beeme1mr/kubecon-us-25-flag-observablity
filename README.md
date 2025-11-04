@@ -2,6 +2,8 @@
 
 A presentation for **KubeCon + CloudNativeCon North America 2025** demonstrating how OpenFeature and OpenTelemetry integrate to provide trace-level observability for feature flags.
 
+**[View the presentation →](https://beeme1mr.github.io/kubecon-us-25-flag-observablity/)**
+
 ## Speakers
 
 - **Michael Beemer** - Dynatrace
