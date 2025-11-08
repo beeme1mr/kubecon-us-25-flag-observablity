@@ -40,10 +40,10 @@ To run the presentation locally:
 
 ```bash
 # Install dependencies
-pnpm install
+bun install
 
 # Start the dev server
-pnpm dev
+bun run dev
 
 # Visit http://localhost:3030
 ```
@@ -51,13 +51,13 @@ pnpm dev
 ### Build for Production
 
 ```bash
-pnpm build
+bun run build
 ```
 
 ### Export to PDF
 
 ```bash
-pnpm export
+bun run export
 ```
 
 ## Project Structure
@@ -67,7 +67,6 @@ pnpm export
 - **`public/`** - Static assets (logos, screenshots, speaker photos)
 - **`NARRATIVE.md`** - Detailed presentation flow and timing
 - **`STYLES.md`** - Style guide and design patterns
-- **`CLAUDE.md`** - Development guidance for AI assistants
 
 ## Contributing
 
