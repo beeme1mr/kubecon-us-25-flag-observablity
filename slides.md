@@ -1243,7 +1243,7 @@ graph LR
 layout: section
 ---
 
-# Progressive Delivery with Observability
+# <span class="text-4xl">Progressive Delivery with Observability</span>
 
 Transforming theory into practice
 
