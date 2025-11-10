@@ -976,9 +976,9 @@ This is the transformation we're enabling with OpenFeature and OpenTelemetry.
 layout: section
 ---
 
-# Feature Flag Observability Standards
+# <span class="text-4xl">Feature Flag Observability Standards</span>
 
-How OpenFeature & OpenTelemetry defined the solution
+<span class="opacity-80">Bridging feature flags and observability through open standards</span>
 
 ---
 layout: default
@@ -1070,7 +1070,7 @@ layout: default
 
 <div v-click>
 
-### The Obvious Attributes
+### Obvious Attributes
 
 <div class="text-sm space-y-3 mt-3">
 
@@ -1105,7 +1105,7 @@ layout: default
 
 <div v-click="2">
 
-### The Nuanced Attributes
+### Nuanced Attributes
 
 <div class="text-sm space-y-3 mt-3">
 
@@ -1443,6 +1443,118 @@ layout: center
   </div>
 </div>
 
+---
+layout: default
+class: py-8
+---
+
+# Challenges and Opportunities
+
+<span class="opacity-80">The journey isn't complete</span>
+
+<div class="grid grid-cols-2 gap-8 mt-8">
+
+<div v-click class="flex">
+  <div
+    border="1.5 solid amber-600"
+    rounded-lg
+    overflow-hidden
+    bg="amber-900/20"
+    backdrop-blur-sm
+    class="flex-1"
+    style="box-shadow: 0 8px 32px 0 rgba(217, 119, 6, 0.25);"
+  >
+    <div
+      flex items-center
+      px-5 py-4
+      style="background: linear-gradient(135deg, rgba(217, 119, 6, 0.25), rgba(146, 64, 14, 0.25));"
+    >
+      <div class="i-carbon:warning-alt text-amber-300 text-xl mr-3" />
+      <h3 class="text-amber-200 font-semibold text-lg">Current Limitations</h3>
+    </div>
+    <div px-5 py-5>
+      <div class="space-y-4 text-base">
+        <div>
+          <div flex items-start gap-3 class="mb-2">
+            <div class="i-carbon:scale text-amber-400 text-lg mt-0.5 flex-shrink-0" />
+            <span class="font-semibold">Scaling Challenges</span>
+          </div>
+          <div class="text-sm opacity-80 ml-8">
+            Users must handle deduplication, sampling, and aggregation strategies themselves
+          </div>
+        </div>
+        <div>
+          <div flex items-start gap-3 class="mb-2">
+            <div class="i-carbon:plug text-amber-400 text-lg mt-0.5 flex-shrink-0" />
+            <span class="font-semibold">Provider Dependency</span>
+          </div>
+          <div class="text-sm opacity-80 ml-8">
+            Requires OpenFeature providers to include semantic convention attributes
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div v-click="2" class="flex">
+  <div
+    border="1.5 solid purple-light"
+    rounded-lg
+    overflow-hidden
+    class="bg-gradient-card flex-1"
+    backdrop-blur-sm
+    style="box-shadow: 0 8px 32px 0 rgba(109, 118, 255, 0.35);"
+  >
+    <div
+      flex items-center
+      px-5 py-4
+      class="bg-gradient-purple"
+    >
+      <div class="i-carbon:rocket text-purple-bright text-xl mr-3" />
+      <h3 class="text-purple-bright font-semibold text-lg">Opportunities Ahead</h3>
+    </div>
+    <div px-5 py-5>
+      <div class="space-y-4 text-base">
+        <div>
+          <div flex items-start gap-3 class="mb-2">
+            <div class="i-carbon:chart-line text-blue-400 text-lg mt-0.5 flex-shrink-0" />
+            <span class="font-semibold">Metrics Convention</span>
+          </div>
+          <div class="text-sm opacity-80 ml-8">
+            Standardize flag evaluation metrics for consistent monitoring
+          </div>
+        </div>
+        <div>
+          <div flex items-start gap-3 class="mb-2">
+            <div class="i-carbon:event text-blue-400 text-lg mt-0.5 flex-shrink-0" />
+            <span class="font-semibold">Change Events</span>
+          </div>
+          <div class="text-sm opacity-80 ml-8">
+            Define standard format for flag configuration changes
+          </div>
+        </div>
+        <div>
+          <div flex items-start gap-3 class="mb-2">
+            <div class="i-carbon:data-structured text-blue-400 text-lg mt-0.5 flex-shrink-0" />
+            <span class="font-semibold">Flags as Entities</span>
+          </div>
+          <div class="text-sm opacity-80 ml-8">
+            Model feature flags as first-class entities in observability platforms
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!--
+We've made great progress, but there's still work to do.
+The semantic convention for events is just the beginning.
+We need your help to define metrics, change events, and entity models.
+-->
 
 ---
 layout: center
