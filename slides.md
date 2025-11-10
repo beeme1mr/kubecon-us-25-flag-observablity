@@ -900,7 +900,7 @@ clicks: 4
 </div>
 
 <div class="flex items-start gap-3">
-  <div class="i-carbon:view text-blue-400 text-xl mt-1 flex-shrink-0" />
+  <div class="i-carbon:transform-code text-orange-400 text-xl mt-1 flex-shrink-0" />
   <div>
     <div class="font-semibold">Realtime mapping of flag presence per service</div>
     <div class="text-sm opacity-70">Filter by traces with specific flag presence</div>
