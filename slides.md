@@ -87,7 +87,7 @@ class: px-6 py-4
 
 <div class="pr-4">
 
-# <span class="text-red-400">3:15 PM</span> Monday
+# <span class="text-red-400">3:25 PM</span> Monday
 
 <div class="text-xs opacity-70 mb-4">A familiar story...</div>
 
@@ -101,7 +101,7 @@ class: px-6 py-4
   <ProblemCard 
     service-name="checkout-service"
     :error-rate="7.14"
-    timestamp="Nov 11, 2025, 3:15 PM"
+    timestamp="Nov 11, 2025, 3:25 PM"
   />
   
   <div v-click="7" class="mt-3 p-3 bg-red-900/20 border border-red-800 rounded-lg text-xs" style="box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);">
@@ -1125,7 +1125,7 @@ layout: default
 <span class="font-semibold">Provider's context identifier</span> (fallback: targeting key)
 </div>
 <div class="text-xs opacity-70 mt-1">
-Used by providers like LaunchDarkly to lookup stored contexts
+Used by providers like DevCycle to lookup user evaluations and simulation
 </div>
 </div>
 
