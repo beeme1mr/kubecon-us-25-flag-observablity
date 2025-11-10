@@ -213,7 +213,7 @@ const createCharts = () => {
         maintainAspectRatio: false,
         scales: {
           x: {
-            display: true,
+            display: false,
             grid: { color: 'rgba(255, 255, 255, 0.05)' },
             ticks: {
               color: 'rgba(255, 255, 255, 0.6)',
@@ -289,7 +289,7 @@ const createCharts = () => {
         maintainAspectRatio: false,
         scales: {
           x: {
-            display: true,
+            display: false,
             grid: { color: 'rgba(255, 255, 255, 0.05)' },
             ticks: {
               color: 'rgba(255, 255, 255, 0.6)',

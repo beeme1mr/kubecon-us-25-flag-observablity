@@ -36,37 +36,37 @@ const props = defineProps({
 
 const events: TimelineEvent[] = [
   {
-    time: '2:35 PM',
+    time: '3:15 PM',
     label: 'ERROR',
     text: 'Failure rate increase detected',
     severity: 'error'
   },
   {
-    time: '2:40 PM',
+    time: '3:20 PM',
     label: 'INVESTIGATION',
     text: 'No recent deployments found',
     severity: 'warning'
   },
   {
-    time: '3:15 PM',
+    time: '3:55 PM',
     label: 'INVESTIGATION',
     text: 'No code changes in last 48h',
     severity: 'warning'
   },
   {
-    time: '4:00 PM',
+    time: '4:40 PM',
     label: 'INVESTIGATION',
     text: 'All dependencies healthy',
     severity: 'warning'
   },
   {
-    time: '4:30 PM',
+    time: '5:10 PM',
     label: 'ESCALATION',
     text: 'All hands on deck',
     severity: 'error'
   },
   {
-    time: '5:45 PM',
+    time: '6:15 PM',
     label: 'ROOT CAUSE',
     text: '"Oh, I toggled that feature flag"',
     severity: 'info'

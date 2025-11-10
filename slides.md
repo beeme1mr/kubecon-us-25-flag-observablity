@@ -71,7 +71,7 @@ class: px-35
     <span font-semibold text-3xl>Parth Suthar</span>
     <div items-center>
       <div>
-        <span class="opacity-70">Software engineer</span>
+        <span class="opacity-70">Software Engineer</span>
       </div>
       <div text-sm flex items-center justify-center gap-2 mt-4>
         <div i-ri:github-fill /><span underline decoration-dashed font-mono decoration-zinc-300>suthar26</span>
@@ -87,7 +87,7 @@ class: px-6 py-4
 
 <div class="pr-4">
 
-# <span class="text-red-400">2:35 PM</span> Tuesday
+# <span class="text-red-400">3:15 PM</span> Monday
 
 <div class="text-xs opacity-70 mb-4">A familiar story...</div>
 
@@ -101,7 +101,7 @@ class: px-6 py-4
   <ProblemCard 
     service-name="checkout-service"
     :error-rate="7.14"
-    timestamp="Oct 15, 2025, 2:35 PM"
+    timestamp="Nov 11, 2025, 3:15 PM"
   />
   
   <div v-click="7" class="mt-3 p-3 bg-red-900/20 border border-red-800 rounded-lg text-xs" style="box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);">
