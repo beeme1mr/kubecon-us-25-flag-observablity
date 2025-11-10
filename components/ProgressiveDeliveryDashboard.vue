@@ -54,13 +54,13 @@ const generateErrorData = (stage: string) => {
   }
 
   if (stage === 'rollback') {
-    // After rollback: show spike then recovery as treatment traffic goes to 0%
+    // After rollback: return to baseline as new variant is disabled
     return {
       control: baseControl,
       treatment: baseTreatment.map((v, i) => {
         if (i <= 12) return v; // Normal before issue
         if (i <= 16) return 13 + Math.random() * 4; // Spike during issue
-        return 0; // After rollback, no treatment traffic
+        return 0.09 + Math.random() * 0.05; // After rollback, return to baseline (same as original baseTreatment)
       }),
     };
   }
@@ -81,13 +81,13 @@ const generateLatencyData = (stage: string) => {
   }
 
   if (stage === 'rollback') {
-    // After rollback: show spike then recovery as treatment traffic goes to 0%
+    // After rollback: return to baseline as new variant is disabled
     return {
       control: baseControl,
       treatment: baseTreatment.map((v, i) => {
         if (i <= 12) return v; // Normal before issue
         if (i <= 16) return 1100 + Math.random() * 200; // Spike during issue
-        return 0; // After rollback, no treatment traffic
+        return 180 + Math.random() * 18; // After rollback, return to baseline (same as original baseTreatment)
       }),
     };
   }
