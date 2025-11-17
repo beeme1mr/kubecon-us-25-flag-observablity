@@ -31,6 +31,13 @@ info: |
   <p>Michael Beemer, Dynatrace<br>Parth Suthar, DevCycle</p>
 </div>
 
+<div absolute bottom-0 left-0 flex items-center gap-4>
+  <div flex items-left justify-start>
+    <img src="/website-qr-code.png" h-20 >
+  </div>
+  <p class="text-sm opacity-70"> hosted at: <a href="https://beeme1mr.github.io/kubecon-us-25-flag-observablity/" class="text-blue-400">https://beeme1mr.github.io/kubecon-us-25-flag-observablity/</a> </p> 
+</div>
+
 <div w-full absolute bottom-0 left-0 flex items-center transform="translate-x--10 translate-y--10">
   <div w-full flex items-center justify-end gap-4>
     <img src="/kccnc-na-2025-white.svg" h-20 translate-y-4>

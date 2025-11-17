@@ -17,8 +17,12 @@
     "@slidev/theme-seriph": "latest",
     "chart.js": "^4.5.1",
     "chartjs-plugin-annotation": "^3.1.0",
+    "playwright": "^1.56.1",
     "slidev-addon-fancy-arrow": "^0.13.11",
     "slidev-addon-qrcode": "^1.0.2",
     "vue": "^3.5.22"
+  },
+  "devDependencies": {
+    "playwright-chromium": "^1.56.1"
   }
 }
